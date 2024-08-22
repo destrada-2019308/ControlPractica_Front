@@ -22,3 +22,21 @@ export const loginRequest = async(lg) =>{
         return { error: true, error}
     }
 }
+
+export const addControlRequest = async(control) =>{
+    try {
+        return await apiClient.post('/control/createControl', control)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getControlByUser = async(id) =>{
+    try {
+        return await apiClient.get(`/control/getControlByUser/${id}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
