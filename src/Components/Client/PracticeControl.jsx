@@ -26,11 +26,10 @@ export const PracticeControl = () => {
     let userId = id.codeUser
     
     
-    //console.log('Id del user: ',userId);
+    console.log('Id del user: ',userId);
     console.log('Practicante : ',practicing.codePracticante);
     let pId = practicing.codePracticante
 
-    console.log('asd',pId);
     
     
 
@@ -42,7 +41,7 @@ export const PracticeControl = () => {
 
     const handleOnSubmit = (e) =>{
         e.preventDefault()
-        form.codePracticante = 1
+        form.codePracticante = pId
         getById(pId)
         getPracticing(userId)
         registerControler(form)
