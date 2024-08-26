@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useControl } from '../../Shared/hooks/useControl'
 import { useAddControl } from '../../Shared/hooks/useAddControl'
+import './style.css'
 
 export const PracticeControl = () => {
 
-    const { getById, control, user } = useControl()
+    const { getById, control, user, getPracticing, practicing } = useControl()
     const { registerControler } = useAddControl()
 
     const [ form, setForm ] = useState({
@@ -14,26 +15,39 @@ export const PracticeControl = () => {
         hour_afternoon_entry: '', 
         hour_afternoon_exit: '', 
         description: '',
-        codeUser: ''
+        codePracticante: ''
     })
 
-    const idUser = localStorage.getItem('user')
+    let idUser = localStorage.getItem('user')
 
-    const id = JSON.parse(idUser)
+    let id = JSON.parse(idUser)
 
     //console.log(id.codeUser);
-    const userId = id.codeUser
+    let userId = id.codeUser
+    
+    
+    //console.log('Id del user: ',userId);
+    console.log('Practicante : ',practicing.codePracticante);
+    let pId = practicing.codePracticante
+
+    console.log('asd',pId);
+    
+    
 
     useEffect(() => {
         //console.log(control);
-        getById(userId)
-    }, [])
+        getById(pId)
+        getPracticing(userId)
+    }, [pId])
 
     const handleOnSubmit = (e) =>{
         e.preventDefault()
-        form.codeUser = userId
+        form.codePracticante = 1
+        getById(pId)
+        getPracticing(userId)
         registerControler(form)
-        getById(userId)
+        getById(pId)
+        cleanInputs()
     } 
 
     const cleanInputs = () =>{
@@ -43,7 +57,7 @@ export const PracticeControl = () => {
             hour_afternoon_entry: '', 
             hour_afternoon_exit: '', 
             description: '',
-            codeUser: ''})
+            codePracticante: ''})
     }
 
     const handleOnChange = (e) =>{
@@ -54,34 +68,38 @@ export const PracticeControl = () => {
         })
     }
 
+
+    
+
     return (
-        <div>
-            <div className=' form-control rounded-2 p-4 m-4 bg-light'>
+        <div className=''>
+            <div className=' form-control rounded-2 p-4 m-2 bg-light'>
                 <form className='p-4' onSubmit={handleOnSubmit} >
-                    <div className="row m-4 p-4">
+                    <div className="row m-2 p-1">
                         <h4>INGRESAR NUEVO CONTROL DE PRÁCTICA</h4>
                         <div className='col'>
                             <label className='row m-2 ml-2'>Fecha</label>
                             <input type="date" className="form-control" placeholder='Ingresa el dia de hoy ' required name='date' value={form.date} onChange={handleOnChange}/>
                         </div>
+                        
                         <div className='col'>
-                            <label className='row m-2 ml-2'>Hora de entrada</label>
+                            <label className='row m-2 ml-2'>Hora de entrada (Por la mañana)</label>
                             <input type="time" className="form-control" placeholder='Ingresa la hora de entrada por la mañana' required name='hour_morning_entry' value={form.hour_morning_entry} onChange={handleOnChange} />
                         </div>
                         <div>
                         </div>
                         <div className='col'>
-                            <label className='row m-2 ml-2'>Hora de salida</label>
+                            <label className='row m-2 ml-2'>Hora de salida (Por la mañana)</label>
                             <input type="time" className='form-control' placeholder='Ingresa la hora de salida por la mañana' required name='hour_morning_exit' value={form.hour_morning_exit} onChange={handleOnChange} />
                         </div>
                         <div className='col'>
-                            <label className='row m-2 ml-2'>Hora de entrada</label>
+                            <label className='row m-2 ml-2'>Hora de entrada (Por la tarde)</label>
                             <input type="time" className='form-control' placeholder='Ingresa la hora de entrada por la tarde' required name='hour_afternoon_entry' value={form.hour_afternoon_entry} onChange={handleOnChange} />
                         </div>
                         <div>
                         </div>
                         <div className='col'>
-                            <label className='row m-2 ml-2'>Hora de salida</label>
+                            <label className='row m-2 ml-2'>Hora de salida (Por la tarde)</label>
                             <input type="time" className='form-control' placeholder='Ingresa la hora de salida por la tarde' required name='hour_afternoon_exit' value={form.hour_afternoon_exit} onChange={handleOnChange}/>
                         </div>
                         <div className='col'>
@@ -91,22 +109,21 @@ export const PracticeControl = () => {
                     </div>
                     
                     <div className='col '>
-                        <button className='btn btn-outline-success btn-lg m-4'>Agregar</button>
-                        <button onClick={cleanInputs} className='btn btn-outline-warning btn-lg m-4'>Cancelar</button>
+                        <button style={{ backgroundColor: '#28A745', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} className='btn btn-lg m-4'>Agregar</button>
+                        <button style={{ backgroundColor: '#FFC107 ', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} onClick={cleanInputs} className='btn btn-lg m-4'>Cancelar</button>
                     </div>
-                </form>
-                
-                <div className='m-4'>
+
+                    <div className='m-4'>
                     <h4>CONTROL DIARIO DE PRÁCTICA</h4>
                     <table className=' form- table table-sm table-hover shadow-sm p-3 mb-5 bg-body rounded'>
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Hora de entrada</th>
-                                <th scope="col">Hora de salida</th>
-                                <th scope="col">Hora de entrada</th>
-                                <th scope="col">Hora de salida</th>
+                                <th scope="col">Fecha actual  </th>
+                                <th scope="col">Hora de entrada (Mañana)</th>
+                                <th scope="col">Hora de salida (Mañana)</th>
+                                <th scope="col">Hora de entrada (Tarde)</th>
+                                <th scope="col">Hora de salida (Tarde)</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Evaluations</th>
                                 <th scope="col">Name User</th>
@@ -130,7 +147,11 @@ export const PracticeControl = () => {
                             }
                         </tbody>
                     </table>
-                </div>
+                </div>  
+
+                </form>
+                
+               
             </div>
 
         </div>

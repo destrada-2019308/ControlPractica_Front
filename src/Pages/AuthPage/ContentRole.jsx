@@ -2,15 +2,15 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { HomeAdmin } from '../ADMIN/HomeAdmin'
 import { HomeClient } from '../Client/HomeClient'
-import { HomeAttendant } from '../Attendant/HomeAttendant'
+import { HomeAttendant } from '../Manager/HomeAttendant'
 import { NotFound } from '../NotFound'
 
 export const ContentRole = () => {
 
-    const user = localStorage.getItem('user')
+    let user = localStorage.getItem('user')
     //console.log(user);
     
-    const role = JSON.parse(user).role
+    let role = JSON.parse(user).role
     //console.log(role);
     
 
@@ -21,7 +21,7 @@ export const ContentRole = () => {
                 <Route path='prCtrl' element={<HomeAdmin/>} />
             ) : role === 'CLIENT' ? (
                 <Route path='prCtrl' element={<HomeClient/>} />
-            ) : role === 'ATTENDANT' ? (
+            ) : role === 'MANAGER' ? (
                 <Route path='prCtrl' element={<HomeAttendant/>} />
             ) : (
                 <Route path='*' element={<NotFound/>} />

@@ -1,6 +1,7 @@
 body{
-  background-color: #ebf5fb;
+  background-color: #F2F5F8;
   color: #000;
-  
   overflow-x: hidden;
+  box-sizing: border-box;
 }
+

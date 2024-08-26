@@ -1,15 +1,13 @@
-import React from 'react'
-import { useLogin } from '../../Shared/hooks/useLogin'
-import Dropdown from 'react-bootstrap/Dropdown'
-import Button from 'react-bootstrap/Button'
+import { Button, Dropdown } from "react-bootstrap"
+import { useLogin } from "../../Shared/hooks/useLogin"
 
 export const NavBar = () => {
+  
+    const {logout } = useLogin()
 
-  const { logout } = useLogin()
-
-  return (
+    return (
     <nav className="navbar justify-content-between">
-      <a className="navbar-brand m-4 " href='/home/prCtrl/clientHome'>Home Practice Control</a>
+      <a className="navbar-brand m-4 " href=''>Home Practice Control MANAGER</a>
       
       <div className='d-flex'>
         <Dropdown className='mt-4' >
@@ -18,7 +16,7 @@ export const NavBar = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="/home/prCtrl/clientHome/Profile">Profile</Dropdown.Item>
+            <Dropdown.Item href="">Profile</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Button style={{ backgroundColor: '#DC3545 ', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} className="btn m-4" onClick={logout} type="submit">Log Out</Button>
