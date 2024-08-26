@@ -21,10 +21,10 @@ export const useAddManager = () => {
     const getUsers = async() =>{
         const res = await getUser()
 
-        if(res.error) return toast.error(res.err.response.data.message || 'Error to get Control')
-        console.log(res);
+        if(res.error) return toast.error(res.error.response.data.message || 'Error')
+        //console.log(res);
         
-        setUser(res.data.users)
+        setUser(res.data.data)
 
     }
 

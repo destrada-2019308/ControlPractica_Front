@@ -114,7 +114,7 @@ export const PracticeControl = () => {
 
                     <div className='m-4'>
                     <h4>CONTROL DIARIO DE PRÁCTICA</h4>
-                    <table className=' form- table table-sm table-hover shadow-sm p-3 mb-5 bg-body rounded'>
+                    <table className=' form-table table-sm table-hover shadow-sm p-3 mb-5 bg-body rounded'>
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

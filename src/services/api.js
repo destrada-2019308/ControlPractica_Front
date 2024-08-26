@@ -103,3 +103,39 @@ export const evaluations = async(req) =>{
         return { error: true, error}
     }
 }
+
+export const getControlByManager = async(res) =>{
+    try {
+        return await apiClient.get(`/control/getControlManaClient/${res}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getDataControl = async() =>{
+    try {
+        return await apiClient.get('/control/getData')
+    } catch (error) {
+        console.error(error);
+        return{ error: true, error}
+    }
+}
+
+export const getUserById = async(id) =>{
+    try {
+        return await apiClient.get(`/user/getUserById/${id}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updateUser = async(user, id) => {
+    try {
+        return await apiClient.put(`/user/updateUser/${id}`,user)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}

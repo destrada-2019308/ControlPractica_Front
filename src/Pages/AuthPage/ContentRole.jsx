@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { HomeAdmin } from '../ADMIN/HomeAdmin'
+import { HomeAdmin } from '../Admin/HomeAdmin'
 import { HomeClient } from '../Client/HomeClient'
 import { HomeAttendant } from '../Manager/HomeAttendant'
 import { NotFound } from '../NotFound'
@@ -11,7 +11,7 @@ export const ContentRole = () => {
     //console.log(user);
     
     let role = JSON.parse(user).role
-    //console.log(role);
+    console.log(role);
     
 
   return (
