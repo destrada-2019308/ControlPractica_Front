@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Form, InputGroup } from 'react-bootstrap'
 import { useProfile } from '../../Shared/hooks/useProfile'
-
+import './style.css'
 
 export const ProfileComp = () => {
 
@@ -25,9 +25,9 @@ export const ProfileComp = () => {
     cleanInputs()
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     getManagers()
-  },[])
+  }, [])
 
   const cleanInputs = () => {
     setForm({
@@ -49,40 +49,46 @@ export const ProfileComp = () => {
 
   return (
     <>
-      <div>EDIT PROFILE</div>
+      <div className='form-control m-2 p-4'>
+      <div>
+            <h4>EDIT PROFILE</h4>
 
-      <p>Welcome user, update your data to get to know you better </p>
+            <p>Welcome user, update your data to get to know you better </p>
+          </div>
+        <form action="" onSubmit={handleOnSubmit}>
+          
+          <div className="row">
+            <div className='col'>
+              <label >Institucion</label>
+              <input type="text" className="form-input" placeholder='Ingresa tu institucion ' required name='institucion' value={form.institucion} onChange={handleOnChange} />
+            </div>
 
-      <form className='form-control m-2 p-4' action="" onSubmit={handleOnSubmit}>
-        <div className='col'>
-          <label className='row m-2 ml-2'>Institucion</label>
-          <input type="text" className="form-control" placeholder='Ingresa tu institucion ' required name='institucion' value={form.institucion} onChange={handleOnChange} />
-        </div>
+            <div className='col'>
+              <label  >carrera</label>
+              <input type="text" className="form-input" placeholder='Ingresa tu carrera ' required name='carrera' value={form.carrera} onChange={handleOnChange} />
+            </div>
+            <div><br /></div>
+            <div className='col'>
+              <label >empresa</label>
+              <input type="text" className="form-input" placeholder='Ingresa tu empresa ' required name='empresa' value={form.empresa} onChange={handleOnChange} />
+            </div>
 
-        <div className='col'>
-          <label className='row m-2 ml-2'>carrera</label>
-          <input type="text" className="form-control" placeholder='Ingresa tu carrera ' required name='carrera' value={form.carrera} onChange={handleOnChange} />
-        </div>
+            <div className='col'>
+              <label className='mb-2 mt-2'>encargado</label>
+              <select name="encargado" id="" className='form-control' value={form.encargado} onChange={handleOnChange}>
 
-        <div className='col'>
-          <label className='row m-2 ml-2'>empresa</label>
-          <input type="text" className="form-control" placeholder='Ingresa tu empresa ' required name='empresa' value={form.empresa} onChange={handleOnChange} />
-        </div>
+                <option value=""> Select your Manager</option>
+                {isManager.map(index => (
+                  <option key={index.codeUser} value={index.codeUser}>{index.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-        <div className='col'>
-          <label className='row m-2 ml-2'>encargado</label>
-          <select name="encargado" id="" className='form-control' value={form.encargado} onChange={handleOnChange}>
-
-          <option value=""> Select your Manager</option>
-          {isManager.map(index =>(
-            <option key={index.codeUser} value={index.codeUser}>{index.name}</option>
-          ))}
-          </select>
-        </div>
-
-        <button>AddProfile</button>
-      </form>
-
+          <button className="btn btn-success m-4 p-3">AddProfile</button>
+        </form>
+        
+      </div>
     </>
   )
 }

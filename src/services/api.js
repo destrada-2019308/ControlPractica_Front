@@ -19,7 +19,7 @@ export const registerRequest = async(user) =>{
         return await apiClient.post('/user/createUser', user)
     } catch (error) {
         console.error(error);
-        return { error: true, error }
+        return {error: true, error}
     }
 }
 
@@ -134,6 +134,15 @@ export const getUserById = async(id) =>{
 export const updateUser = async(user, id) => {
     try {
         return await apiClient.put(`/user/updateUser/${id}`,user)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getAllDataControl = async(id) =>{
+    try {
+        return await apiClient.get(`/control/allData/${id}`)
     } catch (error) {
         console.error(error);
         return { error: true, error}

@@ -14,15 +14,18 @@ export const useProfile = () => {
         const res = await addPracticing(prof)
         setLoading(false)
 
-        if(res.error) return toast.error(res.error.response.data.message || 'Error to register user')
-
+        console.log(res.error);
+        
+        if(res.error){
+            return toast.error(res.error.response.data.error || 'Error al asdasdasdsad')
+        }
         return toast.success('User registeres successful')
     }
   
     const getManagers = async() =>{
         const res = await getManager()
-        if(res.error) return toast.error(res.error.response.data.message || 'Error to register user')
         console.log(res);
+        if(res.error) return toast.error(res.error.response.data.message || 'asdaddr')
         
         setIsManager(res.data.manager)
     }

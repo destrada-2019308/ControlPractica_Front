@@ -30,12 +30,14 @@ export const useControl = () => {
 
     const getPracticing = async(id) =>{
         const res = await getPracticingById(id)
+        console.log(res);
+        
+        console.log('Practicante',res.data.practicing["codePracticante"]);
 
-        console.log('Practicante',res.data.practicing);
+        if(res.error) return toast.error(res.error.response.data.message || 'Error ')
 
 
-
-        setPracticing(res.data.practicing)
+        setPracticing(res.data.practicing["codePracticante"])
 
     }
   

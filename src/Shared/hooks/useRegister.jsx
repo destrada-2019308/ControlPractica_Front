@@ -14,7 +14,7 @@ export const useRegister = () => {
     const res = await registerRequest(user)
     setLoading(false)
 
-    if(res.error) return toast.error(res.error.response.data.message || 'Error to Register user')
+    if(res.error) return toast.error(res.error.response.data.error || 'Error to Register user')
 
 
     return toast.success('User registered successfully')

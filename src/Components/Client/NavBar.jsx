@@ -19,6 +19,7 @@ export const NavBar = () => {
 
           <Dropdown.Menu>
             <Dropdown.Item href="/home/prCtrl/clientHome/Profile">Profile</Dropdown.Item>
+            <Dropdown.Item href="/home/prCtrl/clientHome">Home</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Button style={{ backgroundColor: '#DC3545 ', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} className="btn m-4" onClick={logout} type="submit">Log Out</Button>

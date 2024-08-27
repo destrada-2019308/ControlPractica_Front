@@ -8,8 +8,11 @@ export const useAddControl = () => {
 
     const registerControler = async(control) =>{
         setLoading(true)
-
+        
+        
         const res = await addControlRequest(control)
+        console.log(res);
+        
         setLoading(false)
 
         if(res.error) return toast.error(res.error.response.data.message || 'Erro to register')

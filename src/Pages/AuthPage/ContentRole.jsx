@@ -11,7 +11,7 @@ export const ContentRole = () => {
     //console.log(user);
     
     let role = JSON.parse(user).role
-    console.log(role);
+    //console.log(role);
     
 
   return (

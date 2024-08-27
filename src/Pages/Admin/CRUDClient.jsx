@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { NavBarAdmin } from "../../Components/Client/Admin/NavBarAdmin"
 import { useRegister } from "../../Shared/hooks/useRegister"
+import { validatePassword, passwordConfirmValidateMessage } from "../../Shared/validators/validator"
 import './style.css'
 import { ListUsers } from "../../Components/Client/Admin/ListUsers"
+import toast from "react-hot-toast"
 
 export const CRUDClient = () => {
 
@@ -15,6 +17,7 @@ export const CRUDClient = () => {
     email: '',
     phone: '',
     password: '',
+    passwordConfirm: '',
     role: '',
     estado: ''
   })
@@ -26,10 +29,15 @@ export const CRUDClient = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     getUsers()
-    register(form)
-    getUsers()
-    cleanInputs()
-    getUsers()
+    if(form.password === form.passwordConfirm){
+      register(form)
+      getUsers()
+      cleanInputs()
+      getUsers()
+    }else {
+      console.log('The passeord dont equal');
+      return toast.error('Las contraseñas no coinciden')
+    }
   }
 
   const cleanInputs = () => {
@@ -40,6 +48,7 @@ export const CRUDClient = () => {
       email: '',
       phone: '',
       password: '',
+      passwordConfirm: '',
       role: '',
       estado:''
     })
@@ -68,6 +77,14 @@ export const CRUDClient = () => {
     })
     
   }
+  const validatePass = ( ) =>{
+    if(form.password === form.passwordConfirm){
+
+    }
+    console.log(form.passwordConfirm, form.password);
+    validatePassword(form.password, form.passwordConfirm)
+  }
+  
 
   const updateUser = () =>{
     console.log(form);
@@ -78,8 +95,6 @@ export const CRUDClient = () => {
 
   return (
     <div>
-      <NavBarAdmin />
-
       
 
       <div className="m-4" >
@@ -115,7 +130,7 @@ export const CRUDClient = () => {
               </div>
               <div className="col">
                 <label htmlFor="">Repeat Password </label>
-                <input type="password" placeholder="Repeat Password" required name="repeatPassword" className="form-input" />
+                <input type="password" placeholder="Repeat Password" required name="passwordConfirm" className="form-input" value={form.passwordConfirm} onChange={handleOnChange}/>
               </div>
               <div></div>
               <div className="col">
@@ -137,7 +152,7 @@ export const CRUDClient = () => {
               </div>
               <div></div>
               <div className="col">
-              <button className="btn btn-success m-4 p-3">Add Profile</button>
+              <button className="btn btn-success m-4 p-3" onClick={validatePass}>Add Profile</button>
               <button className="btn btn-warning m-4 p-3" onClick={cleanInputs}>Cancel</button>
               
               </div>
@@ -149,7 +164,7 @@ export const CRUDClient = () => {
 
       <div className="m-4">
         <div className="form-control m-2 p-4">
-        <h4>SHOW CLIENTS (select a table for edit )</h4>
+        <h4>SHOW CLIENTS ( select table for edit )</h4>
         <br />
           <table className="table table-hover  border shadow-sm p-3 mb-5 bg-body rounded">
             <thead className='thead-dark'>
