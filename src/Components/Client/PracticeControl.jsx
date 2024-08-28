@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useControl } from '../../Shared/hooks/useControl'
 import { useAddControl } from '../../Shared/hooks/useAddControl'
 import './style.css'
+import { useHistorial } from '../../Shared/hooks/useHistorial'
 
 export const PracticeControl = () => {
 
     const { getById, control, user, getPracticing, practicing } = useControl()
+    const { getHistorialUser, userH } = useHistorial()
     const { registerControler } = useAddControl()
 
     const [form, setForm] = useState({
@@ -29,7 +31,7 @@ export const PracticeControl = () => {
     console.log('Id del user: ', userId);
     console.log('Practicante : ', practicing);
     let pId = practicing
-
+    
 
 
 
@@ -70,11 +72,13 @@ export const PracticeControl = () => {
         })
     }
 
-
-
+    const handleOnClick = async() =>{
+        getHistorialUser(userId)
+    }
 
     return (
         <div className=' form-control p-4 m-2 t'>
+            <button onClick={handleOnClick} className='btn btn-dark'>Descargar Historial</button>
             <form className='p-4' onSubmit={handleOnSubmit} >
 
                 <h4>INGRESAR NUEVO CONTROL DE PRÁCTICA</h4>
@@ -106,8 +110,6 @@ export const PracticeControl = () => {
                         <label>Hora de salida (Por la tarde)</label>
                         <input type="time" className='form-input' placeholder='Ingresa la hora de salida por la tarde' required name='hour_afternoon_exit' value={form.hour_afternoon_exit} onChange={handleOnChange} />
                     </div>
-
-
                     <div className='mt-3'>
                         <label >Descripción</label>
                         <input type="text" className='form-input' placeholder='Ingresa el trabajo que realizó' required name='description' value={form.description} onChange={handleOnChange} />
@@ -118,7 +120,7 @@ export const PracticeControl = () => {
                     <button style={{ backgroundColor: '#28A745', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} className='btn btn-lg m-4'>Agregar</button>
                     <button style={{ backgroundColor: '#FFC107 ', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} onClick={cleanInputs} className='btn btn-lg m-4'>Cancelar</button>
                 </div>
-
+                
                 <div className='m-4 w-100'>
                     <h4>CONTROL DIARIO DE PRÁCTICA</h4>
                     <table className=' table table-hover border shadow-sm p-3 mb-5 bg-body rounded'>
@@ -156,7 +158,6 @@ export const PracticeControl = () => {
                 </div>
 
             </form>
-
 
         </div>
 

@@ -17,7 +17,8 @@ export const ProfileComp = () => {
 
   let user = JSON.parse(localStorage.getItem('user'))
   //console.log(user.codeUser);
-
+  console.log(isManager);
+  
   const handleOnSubmit = (e) => {
     e.preventDefault()
     form.codeUser = user.codeUser

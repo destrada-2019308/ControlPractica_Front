@@ -148,3 +148,12 @@ export const getAllDataControl = async(id) =>{
         return { error: true, error}
     }
 }
+
+export const getHistorial = async(id) =>{
+    try {
+        return await apiClient.get(`/user/historial/${id}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
