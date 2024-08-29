@@ -7,23 +7,25 @@ export const useLogin = () => {
   
     const navigate = useNavigate()
     const [ isLoading, setIsLoading ] = useState(false)
-  
+   
+    
     const login = async(user) =>{
         setIsLoading(true)
 
         const res = await loginRequest(user)
         setIsLoading(false)
-
-        console.log(res);
+ 
 
         if(res.error) return toast.error(res.error.response.data.message || 'Error to login ')
 
+        toast.success(res.data.message)
+
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user', JSON.stringify(res.data.userLogged))
-
+     
         navigate('/home/prCtrl')
 
-        return toast.success(res.data.message)
+        
     }
 
     const logout = () =>{
@@ -34,6 +36,6 @@ export const useLogin = () => {
     return {
         login,
         isLoading,
-        logout
+        logout,     
   }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavBarAdmin } from '../../Components/Client/Admin/NavBarAdmin'
+import { NavBarAdmin } from '../../Components/Admin/NavBarAdmin'
 import { useAddManager } from '../../Shared/hooks/useAddManager'
 import { CRUDClient } from './CRUDClient'
 

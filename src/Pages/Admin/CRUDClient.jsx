@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
-import { NavBarAdmin } from "../../Components/Client/Admin/NavBarAdmin"
+import { NavBarAdmin } from "../../Components/Admin/NavBarAdmin"
 import { useRegister } from "../../Shared/hooks/useRegister"
 import { validatePassword, passwordConfirmValidateMessage } from "../../Shared/validators/validator"
 import './style.css'
-import { ListUsers } from "../../Components/Client/Admin/ListUsers"
 import toast from "react-hot-toast"
 
 export const CRUDClient = () => {

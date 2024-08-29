@@ -157,3 +157,117 @@ export const getHistorial = async(id) =>{
         return { error: true, error}
     }
 }
+
+/* CRUD School */
+
+export const getAllSchool = async () => {
+    try {
+        return await apiClient.get(`/school/getSchool`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendSchool = async (params) => {
+    try {
+        return await apiClient.post(`/school/addSchool`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updateSchool = async (params, id) => {
+    try {
+        return await apiClient.put(`/school/updateSchool/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+/* CRUD Career */
+
+export const getAllCareer = async () => {
+    try {
+        return await apiClient.get('/career/getCareer')
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendCareer = async (params) => {
+    try {
+        return await apiClient.post(`/career/addCareer`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updateCareer = async (params, id) => {
+    try {
+        return await apiClient.put(`/career/updateCareer/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+/* CRUD Workstation */
+export const getAllWorkstation = async ( ) => {
+    try {
+        return await apiClient.get('/workstation/getWorkstation')
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendWorkstation = async (params) => {
+    try {
+        return await apiClient.post('/workstation/addWorkstation', params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updateWorkstation = async (params, id) => {
+    try {
+        return await apiClient.put(`/workstation/updateWorkstation/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+/* CRUD Managments */
+export const getAllManagments = async ( ) => {
+    try {
+        return await apiClient.get(`/managments/getManagments`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendManagments = async (params) => {
+    try {
+        return await apiClient.post(`/managments/addManagments`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updateManagments = async (params, id) => {
+    try {
+        return await apiClient.put(`/managments/updateManagments/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}

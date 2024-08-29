@@ -23,7 +23,7 @@ export const useRegister = () => {
 
   const getUsers = async() =>{
     const res = await getUser();
-    console.log(res);
+    //console.log(res);
     
     if(res.error) return toast.error(res.error.response.data.message || 'Error')
 
