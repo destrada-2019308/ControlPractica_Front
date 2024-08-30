@@ -4,24 +4,23 @@ import { useSchool } from "../../../Shared/hooks/ADMIN/useSchool"
 
 export const CRUDSchool = () => {
 
-    const { add, get, update, school } = useSchool()
+    const { addSchool, getSchool, updatedSchool, school } = useSchool()
     const [ form, setForm ] = useState({
         codeSchool: '',
-        name: '',
-        description: '',
-        address: ''
+        nameSchool: '',
+        descriptionSchool: '',
+        addressSchool: ''
     })
 
     useEffect(() => {
-     get()
+     getSchool()
     }, [])
     
 
 
     const handleOnSubmit = (e) =>{
         e.preventDefault()
-        add(form)
-        get()
+        addSchool(form)
         cleanInputs()
     }
 
@@ -35,24 +34,23 @@ export const CRUDSchool = () => {
 
     const cleanInputs = () =>{
         setForm({
-            name: '',
-            description: '',
-            address: ''
+            nameSchool: '',
+            descriptionSchool: '',
+            addressSchool: ''
         })
     }
 
     const handleOnClick = (index) => {
         setForm({
             codeSchool: index.codeSchool,
-            name: index.name,
-            description: index.description,
-            address: index.address
+            nameSchool: index.nameSchool,
+            descriptionSchool: index.descriptionSchool,
+            addressSchool: index.addressSchool
         })
     }
     
     const updateSchool = () =>{
-        update(form, form.codeSchool)
-        get()
+        updatedSchool(form, form.codeSchool)
         cleanInputs()
     }   
     
@@ -68,16 +66,16 @@ export const CRUDSchool = () => {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="">Nombre</label>
-                                <input type="text" className="form-input" name="name" required value={form.name} onChange={handleOnChange} />
+                                <input type="text" className="form-input" name="nameSchool" required value={form.nameSchool} onChange={handleOnChange} />
                             </div>
                             <div className="col">
                                 <label htmlFor="">Descripción</label>
-                                <input type="text" className="form-input" name="description" required value={form.description} onChange={handleOnChange} />
+                                <input type="text" className="form-input" name="descriptionSchool" required value={form.descriptionSchool} onChange={handleOnChange} />
                             </div>
                             <div></div>
                             <div className="col">
                                 <label htmlFor="">Dirección</label>
-                                <input type="text" className="form-input" name="address" required value={form.address} onChange={handleOnChange} />
+                                <input type="text" className="form-input" name="addressSchool" required value={form.addressSchool} onChange={handleOnChange} />
                             </div>
                             <div className="col">
                                 <button className="btn btn-success m-4 p-3">Agregar</button>
@@ -106,9 +104,9 @@ export const CRUDSchool = () => {
                                 school.map((index) => (
                                     <tr key={index.codeSchool} onClick={() => handleOnClick(index)}>
                                         <th scope="row">{index.codeSchool}</th>
-                                        <td>{index.name}</td>
-                                        <td>{index.description}</td>
-                                        <td>{index.address}</td>
+                                        <td>{index.nameSchool}</td>
+                                        <td>{index.descriptionSchool}</td>
+                                        <td>{index.addressSchool}</td>
                                     </tr>
                                 ))
                             }

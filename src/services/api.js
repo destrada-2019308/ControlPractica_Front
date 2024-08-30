@@ -271,3 +271,79 @@ export const updateManagments = async (params, id) => {
         return { error: true, error}
     }
 }
+
+/* CRUD Supervisor */
+
+export const getAllSupervisor = async ( ) => {
+    try {
+        return await apiClient.get(`/supervisor/getSupervisor`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendSupervisor = async (params) => {
+    try {
+        return await apiClient.post('/supervisor/addSupervisor', params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updateSupervisor = async (params, id) => {
+    try {
+        return await apiClient.put(`/supervisor/updateSupervisor/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getAllUserSupervisor = async ( ) => {
+    try {
+        return await apiClient.get('/supervisor/getUserSupervisor')
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+/* CRUD Practicing */
+
+export const getAllPracticing = async ( ) => {
+    try {
+        return await apiClient.get('/practicing/getPracticing')
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getAllUserPracticing = async () => {
+    try {
+        return await apiClient.get(`/practicing/getUserPracticing`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendPracticing = async (params) => {
+    try {
+        return await apiClient.post('/practicing/addPracticing', params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const updatePracticing = async (params, id) => {
+    try {
+        return await apiClient.put(`/practicing/updatePracticing/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}

@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react"
 import { NavBarAdmin } from "../../../Components/Admin/NavBarAdmin"
 import { useManagments } from "../../../Shared/hooks/ADMIN/useManagments"
-import { updateManagments } from "../../../services/api"
 
 export const CRUDManagments = () => {
 
-    const { get, add, update, status } = useManagments()
+    const { getManagments, addManagments, updatedManagments, status } = useManagments()
     const [ form, setForm ] = useState({
         codeManagments: '',
-        name: '',
-        description: ''
+        nameManagments: '',
+        descriptionManagments: ''
     })
 
     useEffect(() => {
-        get()
+        getManagments()
     }, [])
 
     const cleanInputs = () =>{
         setForm({
-            name: '',
-            description: ''
+            nameManagments: '',
+            descriptionManagments: ''
         })
     }
 
     const handleOnSubmit = (e) =>{
         e.preventDefault()
-        add(form)
-        get()
+        addManagments(form)
         cleanInputs()
     }
 
@@ -41,14 +39,13 @@ export const CRUDManagments = () => {
     const handleOnClick = (index) =>{
         setForm({
             codeManagments: index.codeManagments,
-            name: index.name,
-            description: index.description
+            nameManagments: index.nameManagments,
+            descriptionManagments: index.descriptionManagments
         })
     }
 
     const updateManagments = () =>{
-        update(form, form.codeManagments)
-        get()
+        updatedManagments(form, form.codeManagments)
         cleanInputs()
     }
 
@@ -63,11 +60,11 @@ export const CRUDManagments = () => {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="">Nombre</label>
-                                <input type="text" className="form-input" name="name" required value={form.name} onChange={handleOnChange}/>
+                                <input type="text" className="form-input" name="nameManagments" required value={form.nameManagments} onChange={handleOnChange}/>
                             </div>
                             <div className="col">
                                 <label htmlFor="">Descripción</label>
-                                <input type="text" className="form-input" name="description" required value={form.description} onChange={handleOnChange}/>
+                                <input type="text" className="form-input" name="descriptionManagments" required value={form.descriptionManagments} onChange={handleOnChange}/>
                             </div>
                             <div>
                                 <button className="btn btn-success m-4 p-3">Agregar</button>
@@ -94,8 +91,8 @@ export const CRUDManagments = () => {
                                 status.map(index => (
                                     <tr key={index.codeManagments} onClick={() => handleOnClick(index)}>
                                         <th>{index.codeManagments}</th>
-                                        <td>{index.name}</td>
-                                        <td>{index.description}</td>
+                                        <td>{index.nameManagments}</td>
+                                        <td>{index.descriptionManagments}</td>
                                     </tr>
                                 ))
                             }

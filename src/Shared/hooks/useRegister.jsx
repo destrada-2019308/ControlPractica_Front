@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import {registerRequest, getUser, updateUser} from '../../services/api'
 import toast from 'react-hot-toast'
 
@@ -7,6 +6,18 @@ export const useRegister = () => {
 
   const [ loading, setLoading ] = useState(false)
   const [ user, setUser ] = useState([])
+
+  const getUsers = async() =>{
+    const res = await getUser();
+    //console.log(res);
+    
+    if(res.error) return toast.error(res.error.response.data.message || 'Error')
+
+      setUser(res.data.data)
+      console.log(res.data.data);
+      
+    return res.data.data
+}
 
   const register = async(user) =>{
     setLoading(true)
@@ -17,25 +28,20 @@ export const useRegister = () => {
     if(res.error) return toast.error(res.error.response.data.error || 'Error to Register user')
 
 
-    return toast.success('User registered successfully')
+    toast.success('User registered successfully')
+    return getUser()
 
   } 
 
-  const getUsers = async() =>{
-    const res = await getUser();
-    //console.log(res);
-    
-    if(res.error) return toast.error(res.error.response.data.message || 'Error')
-
-      setUser(res.data.data)
-}
+  
 
   const updatedUser = async(user, id) =>{
     const res = await updateUser(user, id)
 
     if(res.error) return toast.error(res.error.response.data.message || 'Error')
 
-    return toast.success('User updated sucess')
+   toast.success('User updated sucess')
+   return getUser()
 
   }
 

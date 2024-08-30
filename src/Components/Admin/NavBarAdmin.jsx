@@ -26,6 +26,8 @@ export const NavBarAdmin = () => {
             <Nav.Link href="/home/prCtrl/clientAdmin/Career">Carreras</Nav.Link>
             <Nav.Link href="/home/prCtrl/clientAdmin/Workstation">Workstation</Nav.Link>
             <Nav.Link href="/home/prCtrl/clientAdmin/Managments">Managments</Nav.Link>
+            <Nav.Link href="/home/prCtrl/clientAdmin/Supervisor">Supervisor</Nav.Link>
+            <Nav.Link href="/home/prCtrl/clientAdmin/Practicing">Practicing</Nav.Link>
 
             <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

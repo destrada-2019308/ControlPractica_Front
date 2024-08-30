@@ -4,29 +4,28 @@ import { useWorkstation } from "../../../Shared/hooks/ADMIN/useWorkstation"
 
 export const CRUDWorkstation = () => {
 
-    const { add, get, update, work } = useWorkstation()
+    const { addWorkstation, getWorkstation, updatedWorkstation, work } = useWorkstation()
 
     const [ form, setForm ] = useState({
         codeWorkstation: '',
-        name: '',
-        description: '',
+        nameWorkstation: '',
+        descriptionWorkstation: ''
     })
 
     useEffect( () => {
-        get()
+        getWorkstation()
     }, [])
 
     const cleanInputs = () => {
         setForm({
-            name: '',
-            description: '',
+            nameWorkstation: '',
+            descriptionWorkstation: ''
         })
     }
 
     const handleOnSubmit = (e) =>{
         e.preventDefault()
-        add(form)
-        get()
+        addWorkstation(form)
         cleanInputs()
     }
 
@@ -41,14 +40,13 @@ export const CRUDWorkstation = () => {
     const handleOnClick = (index) => {
         setForm({
             codeWorkstation: index.codeWorkstation,
-            name:  index.name,
-            description: index.description
+            nameWorkstation: index.nameWorkstation,
+            descriptionWorkstation: index.descriptionWorkstation
         })
     } 
 
     const updateWorkstation = () =>{ 
-        update(form, form.codeWorkstation)
-        get()
+        updatedWorkstation(form, form.codeWorkstation)
         cleanInputs()
     }
 
@@ -63,11 +61,11 @@ export const CRUDWorkstation = () => {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="">Nombre</label>
-                                <input type="text" className="form-input" name="name" required value={form.name} onChange={handleOnChange}/>
+                                <input type="text" className="form-input" name="nameWorkstation" required value={form.nameWorkstation} onChange={handleOnChange}/>
                             </div>
                             <div className="col">
                                 <label htmlFor="">Descripción</label>
-                                <input type="text" className="form-input" name="description" required value={form.description} onChange={handleOnChange}/>
+                                <input type="text" className="form-input" name="descriptionWorkstation" required value={form.descriptionWorkstation} onChange={handleOnChange}/>
                             </div>
                             <div>
                                 <button className="btn btn-success m-4 p-3">Agregar</button>
@@ -94,8 +92,8 @@ export const CRUDWorkstation = () => {
                                 work.map(index => (
                                     <tr key={index.codeWorkstation} onClick={() => handleOnClick(index)}>
                                         <th>{index.codeWorkstation}</th>
-                                        <td>{index.name}</td>
-                                        <td>{index.description}</td>
+                                        <td>{index.nameWorkstation}</td>
+                                        <td>{index.descriptionWorkstation}</td>
                                     </tr>
                                 ))
                             }

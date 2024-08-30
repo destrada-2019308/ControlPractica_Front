@@ -10,7 +10,7 @@ export const CRUDClient = () => {
   const { register, getUsers, user, updatedUser, loading } = useRegister()
   const [ modal, setModal ] = useState(false)
   const [form, setForm] = useState({
-    name: '',
+    nameUser: '',
     lastname: '',
     username: '',
     email: '',
@@ -18,21 +18,21 @@ export const CRUDClient = () => {
     password: '',
     passwordConfirm: '',
     role: '',
-    estado: ''
+    state: ''
   })
-
+  console.log(loading);
+  
   useEffect(() => {
     getUsers()
+    console.log('Ya cambie');
+    
   }, [loading])
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    getUsers()
     if(form.password === form.passwordConfirm){
       register(form)
-      getUsers()
       cleanInputs()
-      getUsers()
     }else {
       console.log('The passeord dont equal');
       return toast.error('Las contraseñas no coinciden')
@@ -41,7 +41,7 @@ export const CRUDClient = () => {
 
   const cleanInputs = () => {
     setForm({
-      name: '',
+      nameUser: '',
       lastname: '',
       username: '',
       email: '',
@@ -49,7 +49,7 @@ export const CRUDClient = () => {
       password: '',
       passwordConfirm: '',
       role: '',
-      estado:''
+      state:''
     })
   }
 
@@ -62,17 +62,16 @@ export const CRUDClient = () => {
   }
 
   const handleOnClick = (user) =>{
-    console.log('click');
     setForm({
       codeUser: user.codeUser,
-      name: user.name,
+      nameUser: user.nameUser,
       lastname: user.lastname,
       username: user.username,
       email: user.email,
       phone: user.phone,
       password: '',
       role: user.role,
-      estado: user.estado
+      state: user.state
     })
     
   }
@@ -89,7 +88,6 @@ export const CRUDClient = () => {
     console.log(form);
     updatedUser(form, form.codeUser)
     cleanInputs()
-    getUsers()
   }
 
   return (
@@ -104,7 +102,7 @@ export const CRUDClient = () => {
             <div className="row">
               <div className="col">
                 <label htmlFor="">Name</label>
-                <input type="text" placeholder="Name" name="name" required className="form-input" value={form.name} onChange={handleOnChange} />
+                <input type="text" placeholder="Name" name="nameUser" required className="form-input" value={form.nameUser} onChange={handleOnChange} />
               </div>
               <div className="col">
                 <label htmlFor="">Lastname</label>
@@ -134,16 +132,17 @@ export const CRUDClient = () => {
               <div></div>
               <div className="col">
                 <label htmlFor="" className="mb-2 mt-2">Role</label>
-                <select name="role" className="form-control" value={form.role} onChange={handleOnChange} id="">
+                <select name="role" className="form-control"  key={form.codeUser} value={form.role} onChange={handleOnChange}  >
                   <option value="">Select role</option>
-                  <option value="CLIENT">CLIENT</option>
+                  <option value="SUPERVISOR">SUPERVISOR</option>
+                  <option value="PRACTICING">PRACTICING</option>
                   <option value="ADMIN">ADMIN</option>
                   <option value="MANAGER">MANAGER</option>
                 </select>
               </div>
               <div className='col'>
                   <label htmlFor="" className='mb-2 mt-2'>Estado</label>
-                  <select name="estado" className='form-control' value={form.estado} onChange={handleOnChange} id="">
+                  <select name="state" className='form-control' value={form.state} onChange={handleOnChange} >
                     <option value="">Select Estado</option>
                     <option value="ENABLE">ENABLE</option>
                     <option value="DISABLED">DISABLED</option>
@@ -182,14 +181,14 @@ export const CRUDClient = () => {
               {
                 user.map((index) => (
                   <tr key={index.codeUser} onClick={() => handleOnClick(index)}>
-                    <th scope="row">{index.codeUser}</th>
-                    <td>{index.name}</td>
+                    <th>{index.codeUser}</th>
+                    <td>{index.nameUser}</td>
                     <td>{index.lastname}</td>
                     <td>{index.username}</td>
                     <td>{index.email}</td>
                     <td>{index.phone}</td>
                     <td>{index.role}</td>
-                    <td>{index.estado}</td>
+                    <td>{index.state}</td>
                   </tr>
                 ))
               }

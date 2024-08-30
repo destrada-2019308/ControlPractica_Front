@@ -6,16 +6,7 @@ export const useSchool = () => {
 
     const [ school, setSchool ] = useState([])
 
-    const add = async (params) => {
-        const res = await sendSchool(params)
-        
-        if(res.error) return toast.error(res.error.response.data.message || 'Error al agregar un colegio')
-    
-        toast.success('Colegio agregado')
-
-    }
-
-    const get = async ( ) => {
+    const getSchool = async ( ) => {
         const res = await getAllSchool()
         //console.log(res);
         //console.log(res.data.get);
@@ -25,10 +16,21 @@ export const useSchool = () => {
         
             setSchool(res.data.get)
         //console.log(school);
-        
+        return res.data.get
     }
 
-    const update = async(params, id ) =>{
+    const addSchool = async (params) => {
+        const res = await sendSchool(params)
+        
+        if(res.error) return toast.error(res.error.response.data.message || 'Error al agregar un colegio')
+    
+        toast.success('Colegio agregado')
+        return getSchool()
+    }
+
+    
+
+    const updatedSchool = async(params, id ) =>{
         console.log(params, id);
         
         const res = await updateSchool(params, id)
@@ -39,12 +41,13 @@ export const useSchool = () => {
         if(res.error) return toast.error(res.error.response.data.message || 'Erro al actualizar')
         
         toast.success('School updated successfully')
+        return getSchool()
     }
 
   return {
-    add,
-    get,
-    update,
+    addSchool,
+    getSchool,
+    updatedSchool,
     school
   }
 }

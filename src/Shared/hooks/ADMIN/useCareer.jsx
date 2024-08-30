@@ -6,29 +6,34 @@ export const useCareer = () => {
 
     const [ career, setCareer ] = useState([])
 
-    const add = async (params) => {
+    const getCareer = async ( ) => {
+      const res = await getAllCareer()
+      if(res.error) return toast.error(res.error.response.data.message || 'Error al obtener datos')
+      setCareer(res.data.get)
+      return res.data.get
+  }
+
+
+    const addCareer = async (params) => {
         const res = await sendCareer(params)
         if(res.error) return toast.error(res.error.response.data.message || 'Error al agregar el dato')
         toast.success('Carrera agregada')
+        return getCareer()
     }
 
-    const get = async ( ) => {
-        const res = await getAllCareer()
-        if(res.error) return toast.error(res.error.response.data.message || 'Error al obtener datos')
-        setCareer(res.data.get)
-    }
-
-    const update = async (params, id) => {
+   
+    const updatedCareer = async (params, id) => {
         const res = await updateCareer(params, id)
         if(res.error) return toast.error(res.error.response.data.message || 'Error al actualizar el dato')
         
         toast.success('Carrera actualizada')
+        return getCareer()
     }
 
   return {
-    add,
-    get,
-    update,
+    addCareer,
+    getCareer,
+    updatedCareer,
     career
   }
 }

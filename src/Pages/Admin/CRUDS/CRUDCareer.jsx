@@ -4,29 +4,28 @@ import { useCareer } from "../../../Shared/hooks/ADMIN/useCareer"
 
 export const CRUDCareer = () => {
 
-    const { add, get, update, career } = useCareer()
+    const { addCareer, getCareer, updatedCareer, career } = useCareer()
 
     const [ form, setForm ] = useState({
         codeCareer: '',
-        name: '',
-        description: ''
+        nameCareer: '',
+        descriptionCareer: ''
     })
 
     useEffect(() => {
-        get()
+        getCareer()
     }, [])
 
     const cleanInputs = () =>{
         setForm({
-            name: '',
-            description: '',
+            nameCareer: '',
+            descriptionCareer: ''   
         })
     }
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        add(form)
-        get()
+        addCareer(form)
         cleanInputs()
     }
     
@@ -41,14 +40,13 @@ export const CRUDCareer = () => {
     const handleOnClick = (index) => {
         setForm({
             codeCareer: index.codeCareer,
-            name: index.name,
-            description: index.description
+            nameCareer: index.nameCareer,
+            descriptionCareer: index.descriptionCareer
         })
     }
 
     const updateCareer = () => {
-        update(form, form.codeCareer)
-        get()
+        updatedCareer(form, form.codeCareer)
         cleanInputs()
     }
 
@@ -64,11 +62,11 @@ export const CRUDCareer = () => {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="">Nombre</label>
-                                <input type="text" className="form-input" name="name" required value={form.name} onChange={handleOnChange}/>
+                                <input type="text" className="form-input" name="nameCareer" required value={form.nameCareer} onChange={handleOnChange}/>
                             </div>
                             <div className="col">
                                 <label htmlFor="">Descripción</label>
-                                <input type="text" className="form-input" name="description" required value={form.description} onChange={handleOnChange}/>
+                                <input type="text" className="form-input" name="descriptionCareer" required value={form.descriptionCareer} onChange={handleOnChange}/>
                             </div>
                             <div>
                                 <button className="btn btn-success m-4 p-3">Agregar</button>
@@ -95,8 +93,8 @@ export const CRUDCareer = () => {
                                 career.map(index => (
                                     <tr key={index.codeCareer} onClick={() => handleOnClick(index)}>
                                         <th>{index.codeCareer}</th>
-                                        <td>{index.name}</td>
-                                        <td>{index.description}</td>
+                                        <td>{index.nameCareer}</td>
+                                        <td>{index.descriptionCareer}</td>
                                     </tr>
                                 ))
                             }
