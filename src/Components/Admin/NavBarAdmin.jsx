@@ -26,25 +26,18 @@ export const NavBarAdmin = () => {
             <Nav.Link href="/home/prCtrl/clientAdmin/Career">Carreras</Nav.Link>
             <Nav.Link href="/home/prCtrl/clientAdmin/Workstation">Workstation</Nav.Link>
             <Nav.Link href="/home/prCtrl/clientAdmin/Managments">Managments</Nav.Link>
-            <Nav.Link href="/home/prCtrl/clientAdmin/Supervisor">Supervisor</Nav.Link>
-            <Nav.Link href="/home/prCtrl/clientAdmin/Practicing">Practicing</Nav.Link>
 
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item  href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+            <NavDropdown title="Usuarios" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="/home/prCtrl/clientAdmin/Supervisor">Supervisor</NavDropdown.Item>
+              <NavDropdown.Item  href="/home/prCtrl/clientAdmin/Practicing">
+                Practicante
               </NavDropdown.Item>
             </NavDropdown>
           
           </Nav>
           <Nav>
             <Container>
-            <Navbar.Brand>Bienvenido {data.name}</Navbar.Brand>
+            <Navbar.Brand>Bienvenido {data.nameUser}</Navbar.Brand>
             <Button  className='btn btn-danger p-3 mb-2' onClick={logout}>Cerrar sesión</Button>
             </Container>
           </Nav>

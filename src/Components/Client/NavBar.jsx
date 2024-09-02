@@ -18,7 +18,6 @@ export const NavBar = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="/home/prCtrl/clientHome/Profile">Profile</Dropdown.Item>
             <Dropdown.Item href="/home/prCtrl/clientHome">Home</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { getAllPracticing, getAllUserPracticing, sendPracticing } from "../../../services/api"
+import { getAllPracticing, getAllUserPracticing, sendPracticing, updatePracticing } from "../../../services/api"
 import toast from "react-hot-toast"
 
 export const usePracticing = () => {
@@ -22,7 +22,7 @@ export const usePracticing = () => {
     }
 
     const updatedPracticing = async (params, id) => {
-        const res = await updatedPracticing(params, id)
+        const res = await updatePracticing(params, id)
         if(res.error) return toast.error(res.error.response.data.message || 'Error al obtener datos')
         toast.success('Practicante actualizado')
         return getPracticing()

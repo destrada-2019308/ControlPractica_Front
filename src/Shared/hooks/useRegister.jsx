@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
-import {registerRequest, getUser, updateUser} from '../../services/api'
+import {getUsers, registerRequest} from '../../services/api'
 import toast from 'react-hot-toast'
 
 export const useRegister = () => {
 
   const [ loading, setLoading ] = useState(false)
   const [ user, setUser ] = useState([])
+ 
+  const getUser = async () => {
+      const res = await getUsers()
 
-  const getUsers = async() =>{
-    const res = await getUser();
-    //console.log(res);
-    
-    if(res.error) return toast.error(res.error.response.data.message || 'Error')
+      if(res.error) return toast.error(res.error.response.data.error || 'Error to get user')
 
       setUser(res.data.data)
-      console.log(res.data.data);
-      
-    return res.data.data
-}
+      return res.data.data
+
+  }
+
 
   const register = async(user) =>{
     setLoading(true)
@@ -32,25 +31,12 @@ export const useRegister = () => {
     return getUser()
 
   } 
-
-  
-
-  const updatedUser = async(user, id) =>{
-    const res = await updateUser(user, id)
-
-    if(res.error) return toast.error(res.error.response.data.message || 'Error')
-
-   toast.success('User updated sucess')
-   return getUser()
-
-  }
-
+ 
 
   return {
     register,
-    loading,
-    getUsers,
-    user,
-    updatedUser
+    loading,  
+    user, 
+    getUser
   }
 }

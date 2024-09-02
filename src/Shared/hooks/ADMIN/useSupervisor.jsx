@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { getAllSupervisor, getAllUserSupervisor, sendSupervisor, updateSupervisor } from "../../../services/api"
+import { getAllSupervisor, getAllUserSupervisor, getPracticBySuper, sendSupervisor, updateSupervisor } from "../../../services/api"
 import toast from "react-hot-toast"
 
 export const useSupervisor = () => {
 
     const [ supervisor, setSupervisor ] = useState([])
     const [ userSupervisor, setUserSupervisor ] = useState([])
+    const [ isSuper, setIsSuper ] = useState([])
 
     const getSupervisor = async ( ) => {
         const res = await getAllSupervisor()
@@ -41,12 +42,23 @@ export const useSupervisor = () => {
       return res.data.get
     }
 
+    const getPractBySupervisor = async (params) => {
+      const res = await getPracticBySuper(params)
+      
+      if(res.error) return toast.error(res.error.response.data.message || 'Error al actualizar')
+
+      setIsSuper(res.data.practicings)
+
+    }
+
   return {
     getSupervisor,
     addSupervisor,
     updatedSupervisor,
     getUserSupervisor,
     supervisor,
-    userSupervisor
+    userSupervisor,
+    isSuper,
+    getPractBySupervisor
   }
 }

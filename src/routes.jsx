@@ -3,7 +3,6 @@ import { AuthPage } from './Pages/AuthPage/AuthPage'
 import { ContentRole } from './Pages/AuthPage/ContentRole'
 import { HomeClient } from './Pages/Client/HomeClient'
 import { HomeAdmin } from './Pages/Admin/HomeAdmin.jsx'
-import { Profile } from './Pages/Client/Profile'
 import { CRUDSchool } from './Pages/Admin/CRUDS/CRUDSchool.jsx'
 import { CRUDCareer } from './Pages/Admin/CRUDS/CRUDCareer.jsx'
 import { CRUDWorkstation } from './Pages/Admin/CRUDS/CRUDWorkstation.jsx'
@@ -15,7 +14,6 @@ export const routes = [
     {path: '/', element: <AuthPage/>},
     {path: '/home/*', element: <ContentRole/>},
     {path: '/home/prCtrl/clientHome', element: <HomeClient/>},
-    {path: '/home/prCtrl/clientHome/Profile', element: <Profile/>},
     
     /* RUTAS DE ADMIN */
     {path: '/home/prCtrl/clientAdmin', element: <HomeAdmin/>},

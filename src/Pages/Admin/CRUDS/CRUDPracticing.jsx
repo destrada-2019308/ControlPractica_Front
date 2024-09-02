@@ -18,6 +18,8 @@ export const CRUDPracticing = () => {
     const { getCareer, career } = useCareer()
     const { getSupervisor, supervisor} = useSupervisor()
 
+
+
     const [ form, setForm ] = useState({
         codePracticing: '',
         date_init: '',
@@ -63,12 +65,20 @@ export const CRUDPracticing = () => {
             [name]:  value
         })
     }
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
     const handleOnClick = (index) => {
+        
         setForm({
             codePracticing: index.codePracticing,
-            date_init: index.date_init,
-            date_finish: index.date_finish,
+            date_init: formatDateForInput(index.date_init),
+            date_finish: formatDateForInput(index.date_finish),
             practice_hrs: index.practice_hrs,
             codeSupervisor: index.codeSupervisor,
             codeUser: index.codeUser,
@@ -76,6 +86,21 @@ export const CRUDPracticing = () => {
             codeCareer: index.codeCareer
         })
     } 
+
+    
+    
+    const formatDateForInput = (isoDate) => {
+        const date = new Date(isoDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Agrega un 0 delante si es necesario
+        const day = String(date.getDate()).padStart(2, '0'); // Agrega un 0 delante si es necesario
+        return `${year}-${month}-${day}`;
+    }
+    
+    const updatePracticing = () =>{
+        updatedPracticing(form, form.codePracticing)
+        cleanInputs()
+    }
 
   return (
     <>
@@ -94,42 +119,63 @@ export const CRUDPracticing = () => {
                                 <label htmlFor="">Fecha de Final</label>
                                 <input type="date" name="date_finish" className="form-input" value={form.date_finish} onChange={handleOnChange} />
                             </div>
+                            <div></div>
                             <div className="col">
                                 <label htmlFor="">Horas de practica</label>
-                                <input type="date" name="date_init" className="form-input" value={form.date_init} onChange={handleOnChange} />
+                                <input type="number" step="any" min="0" name="practice_hrs" className="form-input" value={form.practice_hrs} onChange={handleOnChange} />
                             </div>
+                            <div></div>
                             <div className="col">
                                 <label htmlFor="">Usuario </label>
                                 <select name="codeUser" className="form-select" value={form.codeUser} onChange={handleOnChange}>
                                     <option value="">Selecciona un usuario</option>
                                     {
-                                        userSupervisor.map(index =>(
+                                        userPracticing.map(index =>(
                                             <option value={index.codeUser} key={index.codeUser}>{index.nameUser}</option>
                                         ))
                                     }
                                 </select>
                             </div>
                             <div className="col">
-                                <label htmlFor="">Workstation </label>
-                                <select name="codeWkst" id="codeWkst" className="form-select" value={form.codeWkst} onChange={handleOnChange}>
+                                <label htmlFor="">Supervisor </label>
+                                <select name="codeSupervisor" className="form-select" value={form.codeSupervisor} onChange={handleOnChange}>
                                     <option value="">Selecciona un usuario</option>
                                     {
-                                        work.map(index =>(
-                                            <option value={index.codeWorkstation} key={index.codeWorkstation}>{index.codeWorkstation} | {index.nameWorkstation}</option>
+                                        supervisor.map(index =>(
+                                            <option value={index.codeSupervisor} key={index.codeSupervisor}>{index.codeSupervisor} | {index.nameUser}</option>
                                         ))
                                     }
                                 </select>
                             </div>
                             <div></div>
                             <div className="col">
-                               
-                                
+                                <label htmlFor="">School </label>
+                                <select name="codeSchool"  className="form-select" value={form.codeSchool} onChange={handleOnChange}>
+                                    <option value="">Selecciona un Colegio</option>
+                                    {
+                                        school.map(index =>(
+                                            <option value={index.codeSchool} key={index.codeSchool}>{index.codeSchool} | {index.nameSchool}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            
+                            <div className="col">
+                                <label htmlFor="">Carrera </label>
+                                <select name="codeCareer" id="codeCareer" className="form-select" value={form.codeCareer} onChange={handleOnChange}>
+                                    <option value="">Selecciona un Colegio</option>
+                                    {
+                                        career.map(index =>(
+                                            <option value={index.codeCareer} key={index.codeCareer}>{index.codeCareer} | {index.nameCareer}</option>
+                                        ))
+                                    }
+                                </select>
                             </div>
                         </div>
                     </form>
                     <button onClick={handleOnSubmit} className="btn btn-success m-4 p-3">Agregar</button>
                     <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
-                    <button onClick={updateSupervisor} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={updatePracticing} className="btn btn-danger m-4 p-3">Actualizar</button>
                 </div>
             </div>
 
@@ -141,18 +187,26 @@ export const CRUDPracticing = () => {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Departamento</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">Fecha inicio</th>
+                                <th scope="col">Fecha Final </th>
+                                <th scope="col">Horas de Practica</th>
+                                <th scope="col">Carrera</th>
+                                <th scope="col">Colegio</th>
+                                <th scope="col">Supervisor</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                supervisor.map((index) => (
-                                    <tr key={index.codeSupervisor} onClick={() => handleOnClick(index)}>
-                                        <th scope="row">{index.codeSupervisor}</th>
+                                practicing.map((index) => (
+                                    <tr key={index.codePracticing} onClick={() => handleOnClick(index)}>
+                                        <th scope="row">{index.codePracticing}</th>
                                         <td>{index.nameUser}</td>
-                                        <td>{index.nameWorkstation}</td>
-                                        <td>{index.role}</td>
+                                        <td>{formatDate(index.date_init)}</td>
+                                        <td>{formatDate(index.date_finish)}</td>
+                                        <td>{index.practice_hrs}</td>
+                                        <td>{index.nameCareer}</td>
+                                        <td>{index.nameSchool}</td>
+                                        <td>{index.supervisorName}</td>
                                     </tr>
                                 ))
                             }

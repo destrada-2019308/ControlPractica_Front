@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { NavBarAdmin } from "../../Components/Admin/NavBarAdmin"
 import { useRegister } from "../../Shared/hooks/useRegister"
 import { validatePassword, passwordConfirmValidateMessage } from "../../Shared/validators/validator"
 import './style.css'
@@ -7,7 +6,7 @@ import toast from "react-hot-toast"
 
 export const CRUDClient = () => {
 
-  const { register, getUsers, user, updatedUser, loading } = useRegister()
+  const { register, getUser, user, updatedUser, loading } = useRegister()
   const [ modal, setModal ] = useState(false)
   const [form, setForm] = useState({
     nameUser: '',
@@ -23,7 +22,7 @@ export const CRUDClient = () => {
   console.log(loading);
   
   useEffect(() => {
-    getUsers()
+    getUser()
     console.log('Ya cambie');
     
   }, [loading])

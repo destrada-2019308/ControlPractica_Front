@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:2658',
+    baseURL: 'http://localhost:2658/',
     timeout: 2000
 })
 
@@ -13,6 +13,7 @@ apiClient.interceptors.request.use(
     },
     err => Promise.reject(err)
 )
+/* Usuarios */
 
 export const registerRequest = async(user) =>{
     try {
@@ -31,102 +32,12 @@ export const loginRequest = async(lg) =>{
         return { error: true, error}
     }
 }
-
-export const addControlRequest = async(control) =>{
+ 
+export const getUsers = async() =>{
     try {
-        return await apiClient.post('/control/createControl', control)
+        return await apiClient.get('/user/getUsers')
     } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const getControlByUser = async(id) =>{
-    try {
-        return await apiClient.get(`/control/getControlByUser/${id}`)
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const addPracticing = async(practicing) =>{
-    try {
-        return await apiClient.post('/practicing/addPracticing', practicing)
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const getPracticingById = async(idP) =>{
-    try {
-        return await apiClient.get(`/practicing/getPracticingById/${idP}` )
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const addManager = async(id) =>{
-    try {
-        return await apiClient.put(`/user/addAttendant`, id)
-    } catch (error) {
-        console.error(error);
-        return{ error: true, error}
-    }
-}
-
-export const getUser = async() =>{
-    try {
-        return await apiClient.get(`/user/getUsers`)
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const getManager = async() =>{
-    try {
-        return await apiClient.get('/practicing/getManager')
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const evaluations = async(req) =>{
-    try {
-        return await apiClient.put('/control/evaluation', req)
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const getControlByManager = async(res) =>{
-    try {
-        return await apiClient.get(`/control/getControlManaClient/${res}`)
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
-
-export const getDataControl = async() =>{
-    try {
-        return await apiClient.get('/control/getData')
-    } catch (error) {
-        console.error(error);
-        return{ error: true, error}
-    }
-}
-
-export const getUserById = async(id) =>{
-    try {
-        return await apiClient.get(`/user/getUserById/${id}`)
-    } catch (error) {
-        console.error(error);
+        console.error();
         return { error: true, error}
     }
 }
@@ -139,15 +50,7 @@ export const updateUser = async(user, id) => {
         return { error: true, error}
     }
 }
-
-export const getAllDataControl = async(id) =>{
-    try {
-        return await apiClient.get(`/control/allData/${id}`)
-    } catch (error) {
-        console.error(error);
-        return { error: true, error}
-    }
-}
+ 
 
 export const getHistorial = async(id) =>{
     try {
@@ -342,6 +245,54 @@ export const sendPracticing = async (params) => {
 export const updatePracticing = async (params, id) => {
     try {
         return await apiClient.put(`/practicing/updatePracticing/${id}`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+/* CRUD CONTROL */
+
+export const getControlByUser = async (id) => {
+    try {
+        return await apiClient.get(`/control/getControl/${id}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const sendControl = async (params) => {
+    try {
+        return await apiClient.post(`/control/addControl`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getPracticingByUser = async(id) =>{
+    try {
+        return await apiClient.get(`/practicing/getPracticingByUser/${id}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const getAllData = async(id) =>{
+    try {
+        return await apiClient.get(`/control/getAllData/${id}`)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+/* Para la vista del supervisor */
+export const getPracticBySuper = async (id) => {
+    try {
+        return await apiClient.get(`/practicing/getPracticBySuper/${id}`)
     } catch (error) {
         console.error(error);
         return { error: true, error}

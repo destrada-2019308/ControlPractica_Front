@@ -1,53 +1,58 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { getControlByUser, getPracticingById } from '../../services/api'
+import { getControlByUser, sendControl, getPracticingByUser, getAllData } from '../../services/api'
 
 export const useControl = () => {
-  
-    const [ control, setControl ] = useState([])
-    const [ user, setUser ] = useState([])
-    const [ practicing, setPracticing] = useState([])
+   
+    const [ control , setControl ] = useState([])
+    const [ practicing, setPracticing ] = useState([])
+    const [ practicId, setPracticingId ] = useState([])
+    const [ allData, setAllData ] = useState([])
+    let pruebaUser = 0
     
+    const getPracticingByUsers = async (params) => {
+        const res = await getPracticingByUser(params)
+        
+        setPracticing(res.data.get)
+        setPracticingId(res.data.practicingId) 
+        pruebaUser = res.data.practicingId
+        localStorage.setItem('practicing', res.data.practicingId)
+    }
 
-    const getById = async(id) =>{
+    const getControl = async(id) =>{
         const res = await getControlByUser(id)
-
-        console.log(res);
-
-        if(res.error) return toast.error(res.err.response.data.message || 'Error to get Control')
-
-        setControl(res.data.data)
-        setUser(res.data.user)
+         
         
-        //console.log(res);
+        if(res.error) return toast.error(res.error.response.data.message || 'Error to get control')
         
-
-        //console.log(control);
-        
-        //return toast.success( res.data.message)
-
+        setControl(res.data.get) 
     } 
 
-    const getPracticing = async(id) =>{
-        const res = await getPracticingById(id)
-        console.log(res);
+
+    const addControl = async (params) => {
+        const res = await sendControl(params)
+        if(res.error) return toast.error(res.error.response.data.message || 'Error to Register control')
         
-        console.log('Practicante',res.data.practicing["codePracticante"]);
-
-        if(res.error) return toast.error(res.error.response.data.message || 'Error ')
-
-
-        setPracticing(res.data.practicing["codePracticante"])
-
+        toast.success('Control agregado correctamente')
+        
     }
-  
-    
 
-    return {
-        getById,
+    const getAll = async (params) => {
+        const res = await getAllData(params)
+       
+        
+        setAllData(res.data.get)
+        return res.data.get
+    }
+
+    return { 
+        getControl,
         control,
-        user,
-        getPracticing,
-        practicing
+        addControl,
+        getPracticingByUsers, 
+        practicing,
+        practicId,
+        getAll,
+        allData, 
     }
 }

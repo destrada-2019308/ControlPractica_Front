@@ -19,9 +19,9 @@ export const ContentRole = () => {
         {
             role === 'ADMIN' ? (
                 <Route path='prCtrl' element={<HomeAdmin/>} />
-            ) : role === 'CLIENT' ? (
+            ) : role === 'PRACTICING' ? (
                 <Route path='prCtrl' element={<HomeClient/>} />
-            ) : role === 'MANAGER' ? (
+            ) : role === 'SUPERVISOR' ? (
                 <Route path='prCtrl' element={<HomeAttendant/>} />
             ) : (
                 <Route path='*' element={<NotFound/>} />

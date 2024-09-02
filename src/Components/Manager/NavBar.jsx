@@ -1,27 +1,57 @@
-import { Button, Dropdown } from "react-bootstrap"
-import { useLogin } from "../../Shared/hooks/useLogin"
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useLogin } from '../../Shared/hooks/useLogin'
+import { Button } from 'react-bootstrap';
+import { useSupervisor } from '../../Shared/hooks/ADMIN/useSupervisor';
+import { useEffect } from 'react';
 
 export const NavBar = () => {
-  
-    const {logout } = useLogin()
 
-    return (
-    <nav className="navbar justify-content-between">
-      <a className="navbar-brand m-4 " href=''>Home Practice Control MANAGER</a>
-      
-      <div className='d-flex'>
-        <Dropdown className='mt-4' >
-          <Dropdown.Toggle className='' style={{ padding: '10px 20px'}} variant="dark" id="dropdown-basic">
-            Profile
-          </Dropdown.Toggle>
+    const {logout} = useLogin()
+    const { isSuper, getPractBySupervisor } = useSupervisor()
+    const user = localStorage.getItem('user')
+    //console.log(user);
+    let data = JSON.parse(user)
+    console.log(data.codeUser);
+    let id = data.codeUser
 
-          <Dropdown.Menu>
-            <Dropdown.Item href="/home/prCtrl/clientHome/Profile">Profile</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        <Button style={{ backgroundColor: '#DC3545 ', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} className="btn m-4" onClick={logout} type="submit">Log Out</Button>
-        
-      </div>
-    </nav>
+  useEffect(() => {
+    getPractBySupervisor(id)
+  }, [])
+
+
+
+  return (
+    
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href=" ">Home Supervisor</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+             
+            <NavDropdown title="Usuarios" id="collapsible-nav-dropdown">
+                {
+                  isSuper.map( index => (
+                    <tr>
+                      <a href='#' style={{ color: '#000', margin: '10px'}}>{index.nameUser}</a>
+                    </tr>
+                  ))
+                }
+            </NavDropdown>
+          
+          </Nav>
+          <Nav>
+            <Container>
+            <Navbar.Brand>Bienvenido {data.nameUser}</Navbar.Brand>
+            <Button  className='btn btn-danger p-3 mb-2' onClick={logout}>Cerrar sesión</Button>
+            </Container>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+
   )
 }
