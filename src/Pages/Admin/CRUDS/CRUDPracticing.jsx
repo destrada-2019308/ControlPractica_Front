@@ -116,7 +116,7 @@ export const CRUDPracticing = () => {
                                 <input type="date" name="date_init" className="form-input" value={form.date_init} onChange={handleOnChange} />
                             </div>
                             <div className="col">
-                                <label htmlFor="">Fecha de Final</label>
+                                <label htmlFor="">Fecha de finalización</label>
                                 <input type="date" name="date_finish" className="form-input" value={form.date_finish} onChange={handleOnChange} />
                             </div>
                             <div></div>
@@ -139,7 +139,7 @@ export const CRUDPracticing = () => {
                             <div className="col">
                                 <label htmlFor="">Supervisor </label>
                                 <select name="codeSupervisor" className="form-select" value={form.codeSupervisor} onChange={handleOnChange}>
-                                    <option value="">Selecciona un usuario</option>
+                                    <option value="">Selecciona un supervisor</option>
                                     {
                                         supervisor.map(index =>(
                                             <option value={index.codeSupervisor} key={index.codeSupervisor}>{index.codeSupervisor} | {index.nameUser}</option>
@@ -149,7 +149,7 @@ export const CRUDPracticing = () => {
                             </div>
                             <div></div>
                             <div className="col">
-                                <label htmlFor="">School </label>
+                                <label htmlFor="">Colegio </label>
                                 <select name="codeSchool"  className="form-select" value={form.codeSchool} onChange={handleOnChange}>
                                     <option value="">Selecciona un Colegio</option>
                                     {
@@ -163,7 +163,7 @@ export const CRUDPracticing = () => {
                             <div className="col">
                                 <label htmlFor="">Carrera </label>
                                 <select name="codeCareer" id="codeCareer" className="form-select" value={form.codeCareer} onChange={handleOnChange}>
-                                    <option value="">Selecciona un Colegio</option>
+                                    <option value="">Selecciona una Carrera</option>
                                     {
                                         career.map(index =>(
                                             <option value={index.codeCareer} key={index.codeCareer}>{index.codeCareer} | {index.nameCareer}</option>
@@ -181,7 +181,7 @@ export const CRUDPracticing = () => {
 
             <div className="m-4">
                 <div className="form-control m-2 p-4">
-                    <h4>Mostrar Datos (seleccione una tabla para editar)</h4>
+                    <h4>Mostrar Practicantes <span style={{ fontSize: 'large'}}>(seleccione una tabla para editar)</span></h4>
                     <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                         <thead>
                             <tr>

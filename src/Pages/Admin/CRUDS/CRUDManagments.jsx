@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { NavBarAdmin } from "../../../Components/Admin/NavBarAdmin"
 import { useManagments } from "../../../Shared/hooks/ADMIN/useManagments"
+import { useWorkstation } from "../../../Shared/hooks/ADMIN/useWorkstation"
 
 export const CRUDManagments = () => {
 
@@ -8,17 +9,22 @@ export const CRUDManagments = () => {
     const [ form, setForm ] = useState({
         codeManagments: '',
         nameManagments: '',
-        descriptionManagments: ''
+        descriptionManagments: '',
+        codeWorkstation: ''
     })
+
+    const { getWorkstation, work } = useWorkstation()
 
     useEffect(() => {
         getManagments()
+        getWorkstation()
     }, [])
 
     const cleanInputs = () =>{
         setForm({
             nameManagments: '',
-            descriptionManagments: ''
+            descriptionManagments: '',
+            codeWorkstation: ''
         })
     }
 
@@ -40,7 +46,8 @@ export const CRUDManagments = () => {
         setForm({
             codeManagments: index.codeManagments,
             nameManagments: index.nameManagments,
-            descriptionManagments: index.descriptionManagments
+            descriptionManagments: index.descriptionManagments,
+            codeWorkstation: index.codeWorkstation
         })
     }
 
@@ -55,7 +62,7 @@ export const CRUDManagments = () => {
         <div>
             <div className="m-4">
                 <div className="form-control p-4">
-                    <h4>AGREGAR MANAGMENTS</h4>
+                    <h4>AGREGAR GERENCIAS</h4>
                     <form action="" onSubmit={handleOnSubmit}>
                         <div className="row">
                             <div className="col">
@@ -65,6 +72,17 @@ export const CRUDManagments = () => {
                             <div className="col">
                                 <label htmlFor="">Descripción</label>
                                 <input type="text" className="form-input" name="descriptionManagments" required value={form.descriptionManagments} onChange={handleOnChange}/>
+                            </div>
+                            <div>
+                                <label htmlFor="">Departamento</label>
+                                <select name="codeWorkstation" id="codeWorkstation" value={form.codeWorkstation} className="form-select" onChange={handleOnChange}>
+                                    <option value="">Selecciona un departamento</option>
+                                    {
+                                        work.map(index => (
+                                            <option value={index.codeWorkstation} key={index.codeWorkstation}>{index.nameWorkstation}</option>
+                                        ))
+                                    }
+                                </select>
                             </div>
                             <div>
                                 <button className="btn btn-success m-4 p-3">Agregar</button>
@@ -77,13 +95,14 @@ export const CRUDManagments = () => {
             </div>
             <div className="m-4">
                 <div className="form-control m-2 p-4">
-                    <h4>Managments(seleccione una tabla para editar)</h4>
+                    <h4>Gerencias <span style={{ fontSize: 'large'}}>(seleccione una tabla para editar)</span></h4>
                     <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Departamento</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,6 +112,7 @@ export const CRUDManagments = () => {
                                         <th>{index.codeManagments}</th>
                                         <td>{index.nameManagments}</td>
                                         <td>{index.descriptionManagments}</td>
+                                        <td>{index.codeWorkstation}  | {index.nameWorkstation}</td>
                                     </tr>
                                 ))
                             }

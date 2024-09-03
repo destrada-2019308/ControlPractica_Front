@@ -96,16 +96,16 @@ export const CRUDClient = () => {
       <div className="m-4" >
         
         <div className="form-control m-2 p-4 ">
-        <h4>ADD CLIENT </h4>
+        <h4>AGREGAR USUARIOS </h4>
           <form action="" onSubmit={handleOnSubmit}>
             <div className="row">
               <div className="col">
-                <label htmlFor="">Name</label>
-                <input type="text" placeholder="Name" name="nameUser" required className="form-input" value={form.nameUser} onChange={handleOnChange} />
+                <label htmlFor="">Nombre</label>
+                <input type="text" placeholder="Nombre" name="nameUser" required className="form-input" value={form.nameUser} onChange={handleOnChange} />
               </div>
               <div className="col">
-                <label htmlFor="">Lastname</label>
-                <input type="text" placeholder="Lastname" name="lastname" required className="form-input" value={form.lastname} onChange={handleOnChange} />
+                <label htmlFor="">Apellido</label>
+                <input type="text" placeholder="Apellido" name="lastname" required className="form-input" value={form.lastname} onChange={handleOnChange} />
               </div>
               <div>
                 <label htmlFor="">Username</label>
@@ -116,63 +116,63 @@ export const CRUDClient = () => {
                 <input type="email" placeholder="Email" name="email" required className="form-input" value={form.email} onChange={handleOnChange} />
               </div>
               <div className="col">
-                <label htmlFor="">Phone</label>
-                <input type="number" placeholder="Phone" name="phone" min='0' step='any' required className="form-input" value={form.phone} onChange={handleOnChange} />
+                <label htmlFor="">Teléfono</label>
+                <input type="number" placeholder="Teléfono" name="phone" min='0' step='any' required className="form-input" value={form.phone} onChange={handleOnChange} />
               </div>
               <div></div>
               <div className="col">
-                <label htmlFor="">Password </label>
-                <input type="password" placeholder="Password" name="password" required className="form-input" value={form.password} onChange={handleOnChange} />
+                <label htmlFor="">Contraseña </label>
+                <input type="password" placeholder="Contraseña" name="password" required className="form-input" value={form.password} onChange={handleOnChange} />
               </div>
               <div className="col">
-                <label htmlFor="">Repeat Password </label>
-                <input type="password" placeholder="Repeat Password" required name="passwordConfirm" className="form-input" value={form.passwordConfirm} onChange={handleOnChange}/>
+                <label htmlFor="">Repetir Contraseña </label>
+                <input type="password" placeholder="Repetir Contraseña" required name="passwordConfirm" className="form-input" value={form.passwordConfirm} onChange={handleOnChange}/>
               </div>
               <div></div>
               <div className="col">
-                <label htmlFor="" className="mb-2 mt-2">Role</label>
+                <label htmlFor="" className="mb-2 mt-2">Rol</label>
                 <select name="role" className="form-control"  key={form.codeUser} value={form.role} onChange={handleOnChange}  >
-                  <option value="">Select role</option>
+                  <option value="">Selecciona un rol</option>
                   <option value="SUPERVISOR">SUPERVISOR</option>
-                  <option value="PRACTICING">PRACTICING</option>
+                  <option value="PRACTICING">PRACTICANTE</option>
                   <option value="ADMIN">ADMIN</option>
-                  <option value="MANAGER">MANAGER</option>
+                   
                 </select>
               </div>
               <div className='col'>
                   <label htmlFor="" className='mb-2 mt-2'>Estado</label>
                   <select name="state" className='form-control' value={form.state} onChange={handleOnChange} >
-                    <option value="">Select Estado</option>
-                    <option value="ENABLE">ENABLE</option>
-                    <option value="DISABLED">DISABLED</option>
+                    <option value="">SELECCIONA UN ESTADO</option>
+                    <option value="ENABLE">ACTIVO</option>
+                    <option value="DISABLED">DESACTIVADO</option>
                   </select>
               </div>
               <div></div>
               <div className="col">
-              <button className="btn btn-success m-4 p-3" onClick={validatePass}>Add Profile</button>
-              <button className="btn btn-warning m-4 p-3" onClick={cleanInputs}>Cancel</button>
+              <button style={{ background: '#263061', color: '#fff'}} className="btn   m-4 p-3" onClick={validatePass}>Agregar perfil</button>
+              <button style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3" onClick={cleanInputs}>Cancelar</button>
               
               </div>
             </div>
           </form>
-          <button className="btn btn-danger m-4 p-3" onClick={updateUser}>Update User</button>
+          <button style={{ background: '#707070',  color: '#fff'}} className="btn   m-4 p-3" onClick={updateUser}>Actualizar usuario</button>
         </div>
       </div>
 
       <div className="m-4">
         <div className="form-control m-2 p-4">
-        <h4>SHOW CLIENTS ( select table for edit )</h4>
+        <h4>MOSTRAR USUARIOS <span style={{ fontSize: 'large'}}>(seleccione una tabla para editar)</span></h4>
         <br />
           <table className="table table-hover  border shadow-sm p-3 mb-5 bg-body rounded">
             <thead className='thead-dark'>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Lastname</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Role</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Rol</th>
                 <th scope="col">Estado</th>
               </tr>
             </thead>

@@ -56,7 +56,7 @@ export const CRUDWorkstation = () => {
         <div>
             <div className="m-4">
                 <div className="form-control p-4">
-                    <h4>AGREGAR PUESTOS DE TRABAJO</h4>
+                    <h4>AGREGAR DEPARTAMENTOS</h4>
                     <form action="" onSubmit={handleOnSubmit}>
                         <div className="row">
                             <div className="col">
@@ -78,7 +78,7 @@ export const CRUDWorkstation = () => {
             </div>
             <div className="m-4">
                 <div className="form-control m-2 p-4">
-                    <h4>Puesto de trabajo (seleccione una tabla para editar)</h4>
+                    <h4>Departamentos <span className="" style={{ fontSize:"large"}}>(seleccione una tabla para editar)</span></h4>
                     <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                         <thead>
                             <tr>

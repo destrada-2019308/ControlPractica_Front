@@ -9,7 +9,7 @@ export const NavBar = () => {
 
   return (
     <nav className="navbar justify-content-between">
-      <a className="navbar-brand m-4 " href='/home/prCtrl/clientHome'>Home Practice Control</a>
+      <a className="navbar-brand m-4 " href='/home/prCtrl/clientHome'>Control de Práctica</a>
       
       <div className='d-flex'>
         <Dropdown className='mt-4' >

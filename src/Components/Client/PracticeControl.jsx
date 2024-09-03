@@ -88,7 +88,7 @@ export const PracticeControl = () => {
     <>
       <div>
          <div className='m-4'>
-            <div className='form-control'>
+            <div className='form-control p-4'>
               <div>Datos </div>
               <table className='table table-bordered'> 
                 <thead className=''>
@@ -138,7 +138,8 @@ export const PracticeControl = () => {
                   <input type="time" name="hrs_mrn_exit" className="form-input" value={form.hrs_mrn_exit} onChange={handleOnChange} />
                 </div>
                 <div></div>
-                <h4>Tarde</h4>
+                
+                <h4>TARDE</h4>
                 <div className="col">
                   <label htmlFor="">Hora de entrada</label>
                   <input type="time" name="hrs_aftn_entry" className="form-input" value={form.hrs_aftn_entry} onChange={handleOnChange} />

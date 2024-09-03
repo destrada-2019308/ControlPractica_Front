@@ -49,23 +49,25 @@ export const AuthPage = () => {
         <>
             <div className='div-auth'>
                 <div className='div-h2'>
-                    <h2> Welcome to Practice Control </h2>
+                    <h2>Bienvenido al control de práctica</h2>
                     <br />
                     <div className='cont' id='container'>
                                 <div>
                                     <div className="form-container sign-in-container">
                                         <form action="#" onSubmit={handleOnSubmint}>
-                                            <h1>Sign in</h1>
+                                            <h1>Inicia sesión</h1>
+                                             
                                             <div className="social-container">
                                                 <a href="#" className="social"></a>
                                                 <a href="#" className="social"></a>
                                                 <a href="#" className="social"></a>
                                             </div>
-                                            <span>or use your account</span>
+                                            <span>usa tu cuenta personal</span>
                                             <input type="text" placeholder="Username" required className='form-input' value={form.username} onChange={e => setForm({ ...form, username: e.target.value })} />
                                             <input type="password" placeholder="Password" required className='form-input' value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
                                             {/* <a href="#" className='div-a'>Forgot your password?</a> */}
-                                            <button >Sign In</button>
+                                            
+                                            <button className='mt-2' >Iniciar sesión</button>
                                         </form>
                                     </div>
                                 </div>

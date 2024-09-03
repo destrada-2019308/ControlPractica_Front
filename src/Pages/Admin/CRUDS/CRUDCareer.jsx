@@ -79,7 +79,7 @@ export const CRUDCareer = () => {
             </div>
             <div className="m-4">
                 <div className="form-control m-2 p-4">
-                    <h4>Carreras (seleccione una tabla para editar)</h4>
+                    <h4>Carreras <span style={{ fontSize: 'large'}}>(seleccione una tabla para editar)</span></h4>
                     <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                         <thead>
                             <tr>

@@ -21,6 +21,11 @@ export const ViewEvaluations = () => {
         evaluations: ''
     })
 
+    useEffect(() => {
+            getPractBySupervisor(id)
+            getControl(form.codePracticing)
+        }, [form])
+
     const handleOnChange = (e) => {
         let { name, value } = e.target;
         setForm({
@@ -42,11 +47,7 @@ export const ViewEvaluations = () => {
     console.log('Code Control', formControl);
 
 
-    useEffect(() => {
-        getPractBySupervisor(id)
-        getControl(form.codePracticing)
-    }, [form])
-
+    
     const handleOnClick = (index) => {
         setFormControl({
             codeControl: index.codeControl,
@@ -57,20 +58,21 @@ export const ViewEvaluations = () => {
     const updateEvaluations = () => {
         let idControl = formControl.codeControl
         evaluationPracticing(formControl, idControl)
-        getControl(form.codePracticing)
+        
     }
+ 
 
     return (
         <>
             <div>
                 <div>
-                    <div className='m-4'>
+                    <div className='m-4 -4'>
                         <div className='form-control'>
                             <div className="row m-4">
                             <div className='col'>
-                                <label htmlFor="">Elije un practicante para evaluar</label>
+                                <label htmlFor="">Practicante</label>
                                 <select name="codePracticing" id="" value={form.codePracticing} onChange={handleOnChange} className='form-select '>
-                                    <option value="">Select your practicing</option>
+                                    <option value="">Elije un practicante</option>
                                     {
                                         isSuper.map(index => (
                                             <option value={index.codePracticing} key={index.codePracticing}>{index.codePracticing} | {index.nameUser}</option>
@@ -80,10 +82,10 @@ export const ViewEvaluations = () => {
                                 </select>
                             </div>
                             <div className='col'>
-                                <label htmlFor="">Evaluations</label>
+                                <label htmlFor="">evaluación</label>
 
                                 <select className='form-select' name="evaluations" value={formControl.evaluations} onChange={handleOnChangeControl} id="">
-                                    <option value="">Select your evaluations</option>
+                                    <option value="">Selecciona una nota</option>
                                     <option value="NULL">NULL</option>
                                     <option value="EXCELENTE">EXCELENTE</option>
                                     <option value="BUENO">BUENO</option>
@@ -93,9 +95,12 @@ export const ViewEvaluations = () => {
                             </div>
                             </div>
                         
-                        <div className="form-control p-4">
-                            <h4>Mostrar Datos (seleccione una tabla para editar)</h4>
-                            <button onClick={updateEvaluations} className='btn btn-danger m-4'>Enviar evaluacion</button>
+                        
+                        </div>
+                        <div className="form-control mt-4 p-4">
+                            <h4>Practicante <span style={{ fontSize:'large'}}>(seleccione una tabla para editar)</span></h4>
+                            <button onClick={updateEvaluations} className='btn btn-success m-4'>Enviar evaluacion</button>
+                            
                             <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                                 <thead>
                                     <tr>
@@ -126,7 +131,6 @@ export const ViewEvaluations = () => {
                                     }
                                 </tbody>
                             </table>
-                        </div>
                         </div>
                     </div>
                 </div>

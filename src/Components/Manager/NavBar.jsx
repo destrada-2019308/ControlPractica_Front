@@ -21,15 +21,10 @@ export const NavBar = () => {
     
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href=" ">Home Supervisor</Navbar.Brand>
+        <Navbar.Brand href=" ">Evalua a tu practicante</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-             
-            <NavDropdown title="Usuarios" id="collapsible-nav-dropdown">
-                
-            </NavDropdown>
-          
+          <Nav className="me-auto"> 
           </Nav>
           <Nav>
             <Container>

@@ -25,6 +25,7 @@ export const useControl = () => {
         if(res.error) return toast.error(res.error.response.data.message || 'Carga un practicante')
         
         setControl(res.data.get) 
+        return res.data.get
     } 
 
 
@@ -49,6 +50,7 @@ export const useControl = () => {
         const res = await evaluations(params, id)
 
         toast.success(`Control actualizado correctamente`)
+        return getControl(id)
     }
     
     const historial = async (id) => {

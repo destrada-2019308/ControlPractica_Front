@@ -72,7 +72,7 @@ export const CRUDSupervisor = () => {
                     <form action="" onSubmit={handleOnSubmit}>
                         <div className="row">
                             <div className="col">
-                                <label htmlFor="">Usuario </label>
+                                <label htmlFor="">usuario </label>
                                 <select name="codeUser" className="form-select" value={form.codeUser} onChange={handleOnChange}>
                                     <option value="">Selecciona un usuario</option>
                                     {
@@ -83,7 +83,7 @@ export const CRUDSupervisor = () => {
                                 </select>
                             </div>
                             <div className="col">
-                                <label htmlFor="">Workstation </label>
+                                <label htmlFor="">Departamento </label>
                                 <select name="codeWkst" id="codeWkst" className="form-select" value={form.codeWkst} onChange={handleOnChange}>
                                     <option value="">Selecciona un usuario</option>
                                     {
@@ -108,14 +108,14 @@ export const CRUDSupervisor = () => {
 
             <div className="m-4">
                 <div className="form-control m-2 p-4">
-                    <h4>Mostrar Datos (seleccione una tabla para editar)</h4>
+                    <h4>Mostrar Datos <span style={{ fontSize: 'large'}}>(seleccione una tabla para editar)</span></h4>
                     <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Departamento</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">Rol</th>
                             </tr>
                         </thead>
                         <tbody>

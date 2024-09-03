@@ -16,16 +16,16 @@ export const NavBarAdmin = () => {
     
   return (
     
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className=" p-3 " style={{ background:'#ebebeb'}}>
       <Container>
-        <Navbar.Brand href="/home/prCtrl/clientAdmin"> Gestion de datos</Navbar.Brand>
+        <Navbar.Brand href="/home/prCtrl/clientAdmin"> Gestión de datos</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/home/prCtrl/clientAdmin/School">Colegios</Nav.Link>
             <Nav.Link href="/home/prCtrl/clientAdmin/Career">Carreras</Nav.Link>
-            <Nav.Link href="/home/prCtrl/clientAdmin/Workstation">Workstation</Nav.Link>
-            <Nav.Link href="/home/prCtrl/clientAdmin/Managments">Managments</Nav.Link>
+            <Nav.Link href="/home/prCtrl/clientAdmin/Workstation">Departamento</Nav.Link>
+            <Nav.Link href="/home/prCtrl/clientAdmin/Managments">Gerencias</Nav.Link>
 
             <NavDropdown title="Usuarios" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/home/prCtrl/clientAdmin/Supervisor">Supervisor</NavDropdown.Item>
@@ -38,7 +38,7 @@ export const NavBarAdmin = () => {
           <Nav>
             <Container>
             <Navbar.Brand>Bienvenido {data.nameUser}</Navbar.Brand>
-            <Button  className='btn btn-danger p-3 mb-2' onClick={logout}>Cerrar sesión</Button>
+            <Button  className='btn  p-3' style={{ background: '#3873ba'}} onClick={logout}>Cerrar sesión</Button>
             </Container>
           </Nav>
         </Navbar.Collapse>
