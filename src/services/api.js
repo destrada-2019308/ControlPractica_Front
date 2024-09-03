@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:2658/',
+    baseURL: 'http://localhost:2656/',
     timeout: 2000
 })
 
@@ -54,7 +54,7 @@ export const updateUser = async(user, id) => {
 
 export const getHistorial = async(id) =>{
     try {
-        return await apiClient.get(`/user/historial/${id}`)
+        return await apiClient.get(`/user/historial/${id}`, {responseType: 'blob'})
     } catch (error) {
         console.error(error);
         return { error: true, error}
@@ -265,6 +265,15 @@ export const getControlByUser = async (id) => {
 export const sendControl = async (params) => {
     try {
         return await apiClient.post(`/control/addControl`, params)
+    } catch (error) {
+        console.error(error);
+        return { error: true, error}
+    }
+}
+
+export const evaluations = async (params, id) => {
+    try {
+        return await apiClient.put(`/control/evaluations/${id}`, params)
     } catch (error) {
         console.error(error);
         return { error: true, error}

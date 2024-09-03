@@ -6,7 +6,7 @@ export const PracticeControl = () => {
   const { getControl, control, 
             addControl, getPracticingByUsers, 
             practicing, practicId, 
-            getAll, allData, pruebaUser } = useControl()
+            getAll, allData, pruebaUser, historial } = useControl()
 
   const [form, setForm] = useState({
     codePracticing: '',
@@ -19,15 +19,21 @@ export const PracticeControl = () => {
     codeUser: '',
   })
 
+
+  
   const user = JSON.parse(localStorage.getItem("user"))
   const practic = localStorage.getItem("practicing")
-  const id = user.codeUser  
+  const id = user.codeUser   
+  
+  //console.log(practicing[0].codePracticing);
+     
+    
 
   useEffect(() => { 
     getPracticingByUsers(id)
     getControl(practic)
     getAll(practic)    
-  }, [  ])
+  }, [ practic ])
 
   const cleanInputs = () => {
     setForm({ 
@@ -43,7 +49,7 @@ export const PracticeControl = () => {
   
   const handleOnSubmit = (e) => {
     console.log(form);
-    form.codePracticing = 1
+    form.codePracticing = practicing[0].codePracticing
     e.preventDefault()
     addControl(form)
     cleanInputs()
@@ -74,34 +80,40 @@ export const PracticeControl = () => {
 
   }
 
+  const downloadHisto = () => {
+    historial(practic)
+  }
+
   return (
     <>
       <div>
          <div className='m-4'>
             <div className='form-control'>
               <div>Datos </div>
-              <table> 
-                <thead>
+              <table className='table table-bordered'> 
+                <thead className=''>
                     <tr> 
-                      <th></th>
+                      <th>Nombre</th>
+                      <th>Supervisor</th>
+                      <th>Colegio</th>
+                      <th>Carrera</th>
+                      <th>Fecha de Inicio</th>
+                      <th>Fecha de finalización</th>
+                      <th>Horas de práctica</th>
                     </tr> 
                 </thead>
                 <tbody>{allData.map(index =>(
                      
                       
                         <tr key={index.codeUser}> 
-                        <th>{index.nameUser}</th>
-                        <th>{index.supervisorName}</th>
-                        <th>{index.nameSchool}</th>
-                        <th>{index.nameCareer}</th>
-                        <th>{new Date(index.date_init).toLocaleDateString()}</th>
-                        <th>{new Date(index.date_finish).toLocaleDateString()}</th>
-                        <th>{index.practice_hrs}</th> 
-                        
-                        </tr>
-                       
-                     
-                    
+                        <td>{index.nameUser}</td>
+                        <td>{index.supervisorName}</td>
+                        <td>{index.nameSchool}</td>
+                        <td>{index.nameCareer}</td>
+                        <td>{new Date(index.date_init).toLocaleDateString()}</td>
+                        <td>{new Date(index.date_finish).toLocaleDateString()}</td>
+                        <td>{index.practice_hrs}</td> 
+                        </tr> 
                     ))}
                   </tbody>
               </table>
@@ -146,6 +158,7 @@ export const PracticeControl = () => {
             <button onClick={handleOnSubmit} className="btn btn-success m-4 p-3">Agregar</button>
             <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
             <button onClick={updateControl} className="btn btn-danger m-4 p-3">Actualizar</button>
+            <button onClick={downloadHisto} className='btn btn-dark m-4 p-3'>Descargar Historial</button> 
           </div>
         </div>
 

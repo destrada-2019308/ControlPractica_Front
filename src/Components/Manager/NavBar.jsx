@@ -9,18 +9,12 @@ import { useEffect } from 'react';
 
 export const NavBar = () => {
 
-    const {logout} = useLogin()
-    const { isSuper, getPractBySupervisor } = useSupervisor()
+    const {logout} = useLogin() 
     const user = localStorage.getItem('user')
     //console.log(user);
     let data = JSON.parse(user)
     console.log(data.codeUser);
-    let id = data.codeUser
-
-  useEffect(() => {
-    getPractBySupervisor(id)
-  }, [])
-
+  
 
 
   return (
@@ -33,13 +27,7 @@ export const NavBar = () => {
           <Nav className="me-auto">
              
             <NavDropdown title="Usuarios" id="collapsible-nav-dropdown">
-                {
-                  isSuper.map( index => (
-                    <tr>
-                      <a href='#' style={{ color: '#000', margin: '10px'}}>{index.nameUser}</a>
-                    </tr>
-                  ))
-                }
+                
             </NavDropdown>
           
           </Nav>
