@@ -4,12 +4,18 @@ import { CRUDSupervisor } from "./CRUDS/CRUDSupervisor"
 import { validatePassword, passwordConfirmValidateMessage } from "../../Shared/validators/validator"
 import './style.css'
 import toast from "react-hot-toast"
+import { useSupervisor } from "../../Shared/hooks/ADMIN/useSupervisor"
+import { useWorkstation } from "../../Shared/hooks/ADMIN/useWorkstation"
 
 export const CRUDClient = () => {
 
   const { register, getUser, user, updatedUser, loading } = useRegister()
+  const { addSupervisor, supervisor } = useSupervisor()
+  const { getWorkstation, work } = useWorkstation()
+
   const [ modal, setModal ] = useState(false)
   const [form, setForm] = useState({
+    codeUser: '',
     nameUser: '',
     lastname: '',
     username: '',
@@ -20,6 +26,12 @@ export const CRUDClient = () => {
     role: '',
     state: ''
   })
+
+  const [ formSuper, setFormSuper] = useState({
+    codeUser: '',
+    codeWkst: ''
+  })
+
   console.log(loading);
   
   useEffect(() => {
@@ -31,8 +43,9 @@ export const CRUDClient = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     if(form.password === form.passwordConfirm){
-      register(form)
-      cleanInputs()
+
+        register(form)
+        cleanInputs()
     }else {
       console.log('The passeord dont equal');
       return toast.error('Las contraseñas no coinciden')
@@ -52,11 +65,19 @@ export const CRUDClient = () => {
       state:''
     })
   }
+ 
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({
       ...form,
+      [name]: value
+    })
+  }
+  const handleOnChangeSuper = (e) => {
+    const { name, value } = e.target
+    setFormSuper({
+      ...form, 
       [name]: value
     })
   }
@@ -140,6 +161,7 @@ export const CRUDClient = () => {
                    
                 </select>
               </div>
+               
               <div className='col'>
                   <label htmlFor="" className='mb-2 mt-2'>Estado</label>
                   <select name="state" className='form-control' value={form.state} onChange={handleOnChange} >
