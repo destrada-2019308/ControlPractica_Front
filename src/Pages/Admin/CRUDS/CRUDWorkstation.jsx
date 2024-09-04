@@ -68,12 +68,12 @@ export const CRUDWorkstation = () => {
                                 <input type="text" className="form-input" name="descriptionWorkstation" required value={form.descriptionWorkstation} onChange={handleOnChange}/>
                             </div>
                             <div>
-                                <button className="btn btn-success m-4 p-3">Agregar</button>
-                                <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
+                                <button style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" >Agregar</button>
+                                <button onClick={cleanInputs}style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3">Cancelar</button>
                             </div>
                         </div>
                     </form>
-                    <button onClick={updateWorkstation} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={updateWorkstation} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3" >Actualizar</button>
                 </div>
             </div>
             <div className="m-4">
@@ -89,13 +89,17 @@ export const CRUDWorkstation = () => {
                         </thead>
                         <tbody>
                             {
-                                work.map(index => (
-                                    <tr key={index.codeWorkstation} onClick={() => handleOnClick(index)}>
-                                        <th>{index.codeWorkstation}</th>
-                                        <td>{index.nameWorkstation}</td>
-                                        <td>{index.descriptionWorkstation}</td>
-                                    </tr>
-                                ))
+                                work.length === 0 ? (
+                                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                ) : work.length > 0 ? (
+                                    work.map(index => (
+                                        <tr key={index.codeWorkstation} onClick={() => handleOnClick(index)}>
+                                            <th>{index.codeWorkstation}</th>
+                                            <td>{index.nameWorkstation}</td>
+                                            <td>{index.descriptionWorkstation}</td>
+                                        </tr>
+                                    ))
+                                ) : work ()
                             }
                         </tbody>
                     </table>

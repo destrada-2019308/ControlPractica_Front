@@ -22,7 +22,7 @@ export const useControl = () => {
         const res = await getControlByUser(id)
          
         
-        if(res.error) return toast.error(res.error.response.data.message || 'Carga un practicante')
+        //if(res.error) return toast.error(res.error.response.data.message || 'Carga un practicante')
         
         setControl(res.data.get) 
         return res.data.get

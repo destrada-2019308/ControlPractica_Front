@@ -173,9 +173,9 @@ export const CRUDPracticing = () => {
                             </div>
                         </div>
                     </form>
-                    <button onClick={handleOnSubmit} className="btn btn-success m-4 p-3">Agregar</button>
-                    <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
-                    <button onClick={updatePracticing} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={handleOnSubmit} style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" >Agregar</button>
+                    <button onClick={cleanInputs} style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3">Cancelar</button>
+                    <button onClick={updatePracticing} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3" >Actualizar</button>
                 </div>
             </div>
 
@@ -197,18 +197,22 @@ export const CRUDPracticing = () => {
                         </thead>
                         <tbody>
                             {
-                                practicing.map((index) => (
-                                    <tr key={index.codePracticing} onClick={() => handleOnClick(index)}>
-                                        <th scope="row">{index.codePracticing}</th>
-                                        <td>{index.nameUser}</td>
-                                        <td>{formatDate(index.date_init)}</td>
-                                        <td>{formatDate(index.date_finish)}</td>
-                                        <td>{index.practice_hrs}</td>
-                                        <td>{index.nameCareer}</td>
-                                        <td>{index.nameSchool}</td>
-                                        <td>{index.supervisorName}</td>
-                                    </tr>
-                                ))
+                                practicing.length === 0 ? (
+                                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                ) : practicing.length > 0 ? (
+                                    practicing.map((index) => (
+                                        <tr key={index.codePracticing} onClick={() => handleOnClick(index)}>
+                                            <th scope="row">{index.codePracticing}</th>
+                                            <td>{index.nameUser}</td>
+                                            <td>{formatDate(index.date_init)}</td>
+                                            <td>{formatDate(index.date_finish)}</td>
+                                            <td>{index.practice_hrs}</td>
+                                            <td>{index.nameCareer}</td>
+                                            <td>{index.nameSchool}</td>
+                                            <td>{index.supervisorName}</td>
+                                        </tr>
+                                    ))
+                                ): practicing ()
                             }
                         </tbody>
                     </table>

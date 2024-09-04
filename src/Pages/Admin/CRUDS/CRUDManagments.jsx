@@ -85,12 +85,12 @@ export const CRUDManagments = () => {
                                 </select>
                             </div>
                             <div>
-                                <button className="btn btn-success m-4 p-3">Agregar</button>
-                                <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
+                                <button style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" >Agregar</button>
+                                <button onClick={cleanInputs} style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3" >Cancelar</button>
                             </div>
                         </div>
                     </form>
-                    <button onClick={updateManagments} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={updateManagments} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3" >Actualizar</button>
                 </div>
             </div>
             <div className="m-4">
@@ -107,14 +107,18 @@ export const CRUDManagments = () => {
                         </thead>
                         <tbody>
                             {
-                                status.map(index => (
-                                    <tr key={index.codeManagments} onClick={() => handleOnClick(index)}>
-                                        <th>{index.codeManagments}</th>
-                                        <td>{index.nameManagments}</td>
-                                        <td>{index.descriptionManagments}</td>
-                                        <td>{index.codeWorkstation}  | {index.nameWorkstation}</td>
-                                    </tr>
-                                ))
+                                status.length === 0 ? (
+                                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                ) : status.length > 0 ? ( 
+                                    status.map(index => (
+                                        <tr key={index.codeManagments} onClick={() => handleOnClick(index)}>
+                                            <th>{index.codeManagments}</th>
+                                            <td>{index.nameManagments}</td>
+                                            <td>{index.descriptionManagments}</td>
+                                            <td>{index.codeWorkstation}  | {index.nameWorkstation}</td>
+                                        </tr>
+                                    ))
+                                ) : status  () 
                             }
                         </tbody>
                     </table>

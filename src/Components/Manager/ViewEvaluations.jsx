@@ -86,7 +86,7 @@ export const ViewEvaluations = () => {
 
                                 <select className='form-select' name="evaluations" value={formControl.evaluations} onChange={handleOnChangeControl} id="">
                                     <option value="">Selecciona una nota</option>
-                                    <option value="NULL">NULL</option>
+                                    <option value="PENDIENTE">PENDIENTE</option>
                                     <option value="EXCELENTE">EXCELENTE</option>
                                     <option value="BUENO">BUENO</option>
                                     <option value="REGULAR">REGULAR</option>
@@ -99,7 +99,7 @@ export const ViewEvaluations = () => {
                         </div>
                         <div className="form-control mt-4 p-4">
                             <h4>Practicante <span style={{ fontSize:'large'}}>(seleccione una tabla para editar)</span></h4>
-                            <button onClick={updateEvaluations} className='btn btn-success m-4'>Enviar evaluacion</button>
+                            <button style={{ backgroundColor: '#3873ba ', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px' }} onClick={updateEvaluations} className='btn btn-success m-4'>Enviar evaluacion</button>
                             
                             <table className="table table-hover border shadow-sm p-3 mb-5 bg-body rounded">
                                 <thead>
@@ -116,18 +116,22 @@ export const ViewEvaluations = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        control.map((index) => (
-                                            <tr key={index.codeControl} onClick={() => handleOnClick(index)}>
-                                                <th scope="row">{index.codeControl}</th>
-                                                <td>{new Date(index.date).toLocaleDateString()}</td>
-                                                <td>{index.hrs_mrn_entry}</td>
-                                                <td>{index.hrs_mrn_exit}</td>
-                                                <td>{index.hrs_aftn_entry}</td>
-                                                <td>{index.hrs_aftn_exit}</td>
-                                                <td>{index.description}</td>
-                                                <td>{index.evaluations}</td>
-                                            </tr>
-                                        ))
+                                        control.length === 0 ? (
+                                            <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                        ) : control.length > 0 ? (
+                                            control.map((index) => (
+                                                <tr key={index.codeControl} onClick={() => handleOnClick(index)}>
+                                                    <th scope="row">{index.codeControl}</th>
+                                                    <td>{new Date(index.date).toLocaleDateString()}</td>
+                                                    <td>{index.hrs_mrn_entry}</td>
+                                                    <td>{index.hrs_mrn_exit}</td>
+                                                    <td>{index.hrs_aftn_entry}</td>
+                                                    <td>{index.hrs_aftn_exit}</td>
+                                                    <td>{index.description}</td>
+                                                    <td>{index.evaluations}</td>
+                                                </tr>
+                                            ))
+                                        ) : control ()
                                     }
                                 </tbody>
                             </table>

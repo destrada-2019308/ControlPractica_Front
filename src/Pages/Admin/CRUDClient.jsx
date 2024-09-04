@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useRegister } from "../../Shared/hooks/useRegister"
+import { CRUDSupervisor } from "./CRUDS/CRUDSupervisor"
 import { validatePassword, passwordConfirmValidateMessage } from "../../Shared/validators/validator"
 import './style.css'
 import toast from "react-hot-toast"
@@ -142,14 +143,14 @@ export const CRUDClient = () => {
               <div className='col'>
                   <label htmlFor="" className='mb-2 mt-2'>Estado</label>
                   <select name="state" className='form-control' value={form.state} onChange={handleOnChange} >
-                    <option value="">SELECCIONA UN ESTADO</option>
+                    <option value="">Selecciona un estado</option>
                     <option value="ENABLE">ACTIVO</option>
                     <option value="DISABLED">DESACTIVADO</option>
                   </select>
               </div>
               <div></div>
               <div className="col">
-              <button style={{ background: '#263061', color: '#fff'}} className="btn   m-4 p-3" onClick={validatePass}>Agregar perfil</button>
+              <button style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" onClick={validatePass}>Agregar perfil</button>
               <button style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3" onClick={cleanInputs}>Cancelar</button>
               
               </div>
@@ -157,6 +158,7 @@ export const CRUDClient = () => {
           </form>
           <button style={{ background: '#707070',  color: '#fff'}} className="btn   m-4 p-3" onClick={updateUser}>Actualizar usuario</button>
         </div>
+        
       </div>
 
       <div className="m-4">

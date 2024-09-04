@@ -1,0 +1,8 @@
+/* Cambia el color de la flecha del dropdown */
+.navbar-nav .dropdown-toggle::after {
+    color: #fff;  
+  }
+  
+img {
+  width: 7.8rem;
+}

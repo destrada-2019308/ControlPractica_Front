@@ -69,12 +69,12 @@ export const CRUDCareer = () => {
                                 <input type="text" className="form-input" name="descriptionCareer" required value={form.descriptionCareer} onChange={handleOnChange}/>
                             </div>
                             <div>
-                                <button className="btn btn-success m-4 p-3">Agregar</button>
-                                <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
+                                <button  style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" >Agregar</button>
+                                <button onClick={cleanInputs} style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3" >Cancelar</button>
                             </div>
                         </div>
                     </form>
-                    <button onClick={updateCareer} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={updateCareer} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3" >Actualizar</button>
                 </div>
             </div>
             <div className="m-4">
@@ -90,13 +90,17 @@ export const CRUDCareer = () => {
                         </thead>
                         <tbody>
                             {
-                                career.map(index => (
-                                    <tr key={index.codeCareer} onClick={() => handleOnClick(index)}>
-                                        <th>{index.codeCareer}</th>
-                                        <td>{index.nameCareer}</td>
-                                        <td>{index.descriptionCareer}</td>
-                                    </tr>
-                                ))
+                                career.length === 0 ? (
+                                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                ) : career.length > 0 ? (
+                                    career.map(index => (
+                                        <tr key={index.codeCareer} onClick={() => handleOnClick(index)}>
+                                            <th>{index.codeCareer}</th>
+                                            <td>{index.nameCareer}</td>
+                                            <td>{index.descriptionCareer}</td>
+                                        </tr>
+                                    ))
+                                ) : career ()
                             }
                         </tbody>
                     </table>

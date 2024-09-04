@@ -126,39 +126,39 @@ export const PracticeControl = () => {
               <div className="row">
                 <div className=" ">
                   <label htmlFor="">Día</label>
-                  <input type="date" name="date" className="form-input"  value={form.date} onChange={handleOnChange} />
+                  <input type="date" name="date" className="form-input" required value={form.date} onChange={handleOnChange} />
                 </div>
                 <h4>MAÑANA</h4>
                 <div className="col">
                   <label htmlFor="">Hora de entrada</label>
-                  <input type="time" name="hrs_mrn_entry" className="form-input" value={form.hrs_mrn_entry} onChange={handleOnChange} />
+                  <input type="time" name="hrs_mrn_entry" className="form-input" required value={form.hrs_mrn_entry} onChange={handleOnChange} />
                 </div>
                 <div className="col">
                   <label htmlFor="">Hora de salida</label>
-                  <input type="time" name="hrs_mrn_exit" className="form-input" value={form.hrs_mrn_exit} onChange={handleOnChange} />
+                  <input type="time" name="hrs_mrn_exit" className="form-input" required value={form.hrs_mrn_exit} onChange={handleOnChange} />
                 </div>
                 <div></div>
                 
                 <h4>TARDE</h4>
                 <div className="col">
                   <label htmlFor="">Hora de entrada</label>
-                  <input type="time" name="hrs_aftn_entry" className="form-input" value={form.hrs_aftn_entry} onChange={handleOnChange} />
+                  <input type="time" name="hrs_aftn_entry" className="form-input" required value={form.hrs_aftn_entry} onChange={handleOnChange} />
                 </div>
                 <div className="col">
                   <label htmlFor="">Hora de salida</label>
-                  <input type="time" name="hrs_aftn_exit" className="form-input" value={form.hrs_aftn_exit} onChange={handleOnChange} />
+                  <input type="time" name="hrs_aftn_exit" className="form-input" required value={form.hrs_aftn_exit} onChange={handleOnChange} />
                 </div>
                 <div></div>
                 <div className="col">
                   <label htmlFor="">Descripción</label>
-                  <input type="text"  name="description" className="form-input" value={form.description} onChange={handleOnChange} />
+                  <input type="text"  name="description" className="form-input" required value={form.description} onChange={handleOnChange} />
                 </div>
                 <div></div>  
               </div>
             </form>
-            <button onClick={handleOnSubmit} className="btn btn-success m-4 p-3">Agregar</button>
-            <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
-            <button onClick={updateControl} className="btn btn-danger m-4 p-3">Actualizar</button>
+            <button onClick={handleOnSubmit} style={{background: '#263061', color: '#fff'}} className="btn m-4 p-3">Agregar</button>
+            <button onClick={cleanInputs} style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3">Cancelar / Limpiar</button>
+            {/* <button onClick={updateControl} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3">Actualizar</button> */}
             <button onClick={downloadHisto} className='btn btn-dark m-4 p-3'>Descargar Historial</button> 
           </div>
         </div>
@@ -181,18 +181,22 @@ export const PracticeControl = () => {
               </thead>
               <tbody>
                 {
-                  control.map((index) => (
-                    <tr key={index.codeControl} onClick={() => handleOnClick(index)}>
-                      <th scope="row">{index.codeControl}</th> 
-                      <td>{new Date(index.date).toLocaleDateString()}</td>
-                      <td>{index.hrs_mrn_entry}</td>
-                      <td>{index.hrs_mrn_exit}</td>
-                      <td>{index.hrs_aftn_entry}</td>
-                      <td>{index.hrs_aftn_exit}</td>
-                      <td>{index.description}</td>
-                      <td>{index.evaluations}</td>
-                    </tr>
-                  ))
+                  control.length === 0 ? (
+                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                  ): control.length > 0 ?(
+                    control.map((index) => (
+                      <tr key={index.codeControl} onClick={() => handleOnClick(index)}>
+                        <th scope="row">{index.codeControl}</th> 
+                        <td>{new Date(index.date).toLocaleDateString()}</td>
+                        <td>{index.hrs_mrn_entry}</td>
+                        <td>{index.hrs_mrn_exit}</td>
+                        <td>{index.hrs_aftn_entry}</td>
+                        <td>{index.hrs_aftn_exit}</td>
+                        <td>{index.description}</td>
+                        <td>{index.evaluations}</td>
+                      </tr>
+                    ))
+                  ) : control()
                 }
               </tbody>
             </table>

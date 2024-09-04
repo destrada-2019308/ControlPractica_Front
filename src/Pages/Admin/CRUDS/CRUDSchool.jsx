@@ -78,12 +78,13 @@ export const CRUDSchool = () => {
                                 <input type="text" className="form-input" name="addressSchool" required value={form.addressSchool} onChange={handleOnChange} />
                             </div>
                             <div className="col">
-                                <button className="btn btn-success m-4 p-3">Agregar</button>
-                                <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
+                                <button style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" >Agregar</button>
+                                <button onClick={cleanInputs}style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3"
+                                >Cancelar</button>
                             </div>
                         </div>
                     </form>
-                    <button onClick={updateSchool} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={updateSchool} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3" >Actualizar</button>
                 </div>
             </div>
 
@@ -101,14 +102,18 @@ export const CRUDSchool = () => {
                         </thead>
                         <tbody>
                             {
-                                school.map((index) => (
-                                    <tr key={index.codeSchool} onClick={() => handleOnClick(index)}>
-                                        <th scope="row">{index.codeSchool}</th>
-                                        <td>{index.nameSchool}</td>
-                                        <td>{index.descriptionSchool}</td>
-                                        <td>{index.addressSchool}</td>
-                                    </tr>
-                                ))
+                                school.length === 0 ? (
+                                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                ) : school.length > 0 ? (
+                                    school.map((index) => (
+                                        <tr key={index.codeSchool} onClick={() => handleOnClick(index)}>
+                                            <th scope="row">{index.codeSchool}</th>
+                                            <td>{index.nameSchool}</td>
+                                            <td>{index.descriptionSchool}</td>
+                                            <td>{index.addressSchool}</td>
+                                        </tr>
+                                    ))
+                                ) : school ()
                             }
                         </tbody>
                     </table>

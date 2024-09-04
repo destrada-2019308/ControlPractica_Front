@@ -64,6 +64,7 @@ export const CRUDSupervisor = () => {
 
   return (
     <>
+        {/*  <NavBarAdmin/>*/}
         <NavBarAdmin/>
         <div>
             <div className="m-4">
@@ -100,12 +101,12 @@ export const CRUDSupervisor = () => {
                             </div>
                         </div>
                     </form>
-                    <button onClick={handleOnSubmit} className="btn btn-success m-4 p-3">Agregar</button>
-                    <button onClick={cleanInputs} className="btn btn-warning m-4 p-3">Cancelar</button>
-                    <button onClick={updateSupervisor} className="btn btn-danger m-4 p-3">Actualizar</button>
+                    <button onClick={handleOnSubmit} style={{ background: '#263061', color: '#fff'}} className="btn m-4 p-3" >Agregar</button>
+                    <button onClick={cleanInputs} style={ { background: '#87d1f5', color: '#000'}} className="btn m-4 p-3">Cancelar</button>
+                    <button onClick={updateSupervisor} style={{ background: '#707070',  color: '#fff'}} className="btn m-4 p-3" >Actualizar</button>
                 </div>
             </div>
-
+{/* */}
             <div className="m-4">
                 <div className="form-control m-2 p-4">
                     <h4>Mostrar Datos <span style={{ fontSize: 'large'}}>(seleccione una tabla para editar)</span></h4>
@@ -120,14 +121,18 @@ export const CRUDSupervisor = () => {
                         </thead>
                         <tbody>
                             {
-                                supervisor.map((index) => (
-                                    <tr key={index.codeSupervisor} onClick={() => handleOnClick(index)}>
-                                        <th scope="row">{index.codeSupervisor}</th>
-                                        <td>{index.nameUser}</td>
-                                        <td>{index.nameWorkstation}</td>
-                                        <td>{index.role}</td>
-                                    </tr>
-                                ))
+                                supervisor.length === 0 ? (
+                                    <h1><span className="badge badge-secondary ">No hay datos</span></h1>
+                                ) : supervisor.length > 0 ? (
+                                    supervisor.map((index) => (
+                                        <tr key={index.codeSupervisor} onClick={() => handleOnClick(index)}>
+                                            <th scope="row">{index.codeSupervisor}</th>
+                                            <td>{index.nameUser}</td>
+                                            <td>{index.nameWorkstation}</td>
+                                            <td>{index.role}</td>
+                                        </tr>
+                                    ))
+                                ) : supervisor ()
                             }
                         </tbody>
                     </table>
